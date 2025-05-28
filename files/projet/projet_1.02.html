@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Comparaison d'algorithmes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/f73d9cacdb.js" crossorigin="anonymous"></script>
+    <link href="../style.css" rel="stylesheet"/>
+</head>
+<body id="projet">
+    <div class="cursor"></div>
+    
+    <header>
+        <div class="container header-content">
+            <h1 class="neon-text">Comparaison d'algorithmes</h1>
+            <p class="subtitle">SAÉ S1.02 - Snake autonome et analyse de performance des algorithmes</p>
+            <div>
+                <span class="tech-badge">C</span>
+                <span class="tech-badge">Algorithmes</span>
+                <span class="tech-badge">Analyse de performances</span>
+            </div>
+        </div>
+    </header>
+        
+    <section>
+        <div class="container">
+            <div class="project-details">
+                <div class="project-card">
+                    <h2>Présentation du projet</h2>
+                    <p>Suite au développement du jeu Snake (SAÉ S1.01), ce projet avait pour objectif de rendre le serpent autonome en programmant ses mouvements pour qu'il mange les pommes de manière optimale. L'efficacité de différents algorithmes a été mesurée par le nombre de déplacements nécessaires et le temps CPU.</p>
+                    <br>
+                    <p>Ce projet s'inscrit dans le cadre de la compétence <span class="neon-text">"Appréhender et construire des algorithmes"</span> et plus spécifiquement l'apprentissage critique "Analyser un problème avec méthode".</p>
+                </div>
+                
+                <div class="project-card">
+                    <h2>Informations clés</h2>
+                    <ul class="info-list">
+                        <li><strong>Module :</strong> S1.02</li>
+                        <li><strong>Compétence :</strong> Appréhender et construire des algorithmes</li>
+                        <li><strong>Apprentissage critique :</strong> Analyser un problème avec méthode</li>
+                        <li><strong>Langage :</strong> C</li>
+                        <li><strong>Organisation :</strong> Travail en binôme</li>
+                        <li><strong>Durée :</strong> 4 versions incrémentales</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <h2>Versions du projet</h2>
+                <div class="progress-steps">
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">Version de base</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">Version améliorée</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <div class="step-text">Version avec obstacles</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">4</div>
+                        <div class="step-text">Version optimisée</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-images">
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Serpent autonome en action">
+                </div>
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Graphique de performance des algorithmes">
+                </div>
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Carte avec obstacles">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: #0a0a0a; color: #f0f0f0; position: relative;">
+        <div id="canvas-container"></div>
+        <div class="container">
+            <h2 class="neon-text">Description détaillée</h2>
+            <p>Contrairement à la première SAÉ où le serpent était contrôlé manuellement, ce projet s'est concentré sur l'implémentation d'algorithmes permettant au serpent de se déplacer de manière autonome. L'objectif était d'optimiser ses mouvements pour qu'il mange toutes les pommes présentes dans le jeu en un minimum de déplacements.</p>
+            <br>
+            <p>Ce projet m'a permis d'explorer plusieurs concepts clés en algorithmique :</p>
+            
+            <div class="competence-grid">
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Recherche de chemins</div>
+                    <p>Implémentation d'algorithmes de pathfinding pour déterminer le chemin optimal vers les pommes.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Mesure de performances</div>
+                    <p>Évaluation et comparaison des algorithmes selon le nombre de déplacements et le temps CPU.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Optimisation</div>
+                    <p>Amélioration itérative des algorithmes pour contourner les obstacles et réduire les déplacements inutiles.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Environnement déterministe</div>
+                    <p>Gestion d'un environnement non aléatoire pour permettre des comparaisons objectives entre algorithmes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container competence-section">
+            <h2>Méthodologie</h2>
+            <p>Le développement de ce projet a suivi une approche incrémentale avec quatre versions, chacune ajoutant de la complexité et nécessitant des améliorations algorithmiques :</p>
+            
+            <div class="project-details" style="margin-top: 30px;">
+                <div class="project-card">
+                    <h3>Version 1: Algorithme basique</h3>
+                    <p>Implémentation d'un algorithme simple permettant au serpent de se diriger vers la pomme la plus proche dans un environnement sans obstacle. Cette version a servi de référence pour les comparaisons ultérieures.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Version 2: Plusieurs pommes</h3>
+                    <p>Amélioration de l'algorithme pour gérer efficacement plusieurs pommes présentes simultanément dans le jeu. L'algorithme devait déterminer l'ordre optimal pour manger les pommes.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Version 3: Gestion des obstacles</h3>
+                    <p>Introduction d'obstacles statiques dans l'environnement, nécessitant une adaptation de l'algorithme pour trouver des chemins alternatifs et éviter les collisions tout en maintenant une bonne performance.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Version 4: Optimisation globale</h3>
+                    <p>Développement d'un algorithme avancé combinant les techniques des versions précédentes avec des optimisations supplémentaires pour minimiser le nombre total de déplacements nécessaires pour manger toutes les pommes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: #0a0a0a; color: #f0f0f0; position: relative;">
+        <div class="container">
+            <h2 class="neon-text">Compétences acquises</h2>
+            <p>Ce projet m'a permis de développer et renforcer plusieurs compétences clés en informatique et en analyse d'algorithmes :</p>
+            
+            <div class="competence-grid">
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Algorithmique avancée</div>
+                    <p>Conception et implémentation d'algorithmes de recherche de chemins comme A*, Dijkstra ou des algorithmes gloutons personnalisés.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Analyse comparative</div>
+                    <p>Développement de méthodes rigoureuses pour comparer l'efficacité de différents algorithmes en termes de temps et d'espace.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Programmation efficace</div>
+                    <p>Implémentation d'algorithmes optimisés pour limiter le temps de calcul et améliorer les performances globales.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Résolution de problèmes</div>
+                    <p>Analyse méthodique de situations complexes et élaboration de solutions algorithmiques adaptées.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2>Livrables</h2>
+            <div class="project-details">
+                <div class="project-card">
+                    <h3>Code source</h3>
+                    <ul class="info-list">
+                        <li>Programmes C pour chaque version de l'algorithme</li>
+                        <li>Fichiers d'en-tête et bibliothèque de fonctions</li>
+                        <li>Makefile pour compilation automatisée</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Analyses et tableaux</h3>
+                    <ul class="info-list">
+                        <li>Fichiers ODS avec données de performance</li>
+                        <li>Graphiques comparatifs des algorithmes</li>
+                        <li>Analyses de complexité temporelle et spatiale</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Documentation</h3>
+                    <ul class="info-list">
+                        <li>Rapport explicatif détaillant les algorithmes implémentés</li>
+                        <li>Documentation technique du code source</li>
+                        <li>Mode d'emploi pour exécuter les tests</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Environnements de test</h3>
+                    <ul class="info-list">
+                        <li>Différentes configurations de jeu</li>
+                        <li>Scénarios de test avec positions prédéfinies</li>
+                        <li>Benchmarks standardisés pour comparaisons</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 - Comparaison d'algorithmes - SAÉ S1.02</p>
+            <p>Développé dans le cadre des études universitaires</p>
+            <div class="social-icons">
+                <a aria-label="GitHub" href="https://github.com/Tx-diloxi" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a aria-label="Mail" href="marceaulesech@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a aria-label="LinkedIn" href="https://www.linkedin.com/in/marceau-le-sech-38a60b353/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <a href="../contacter.html" class="contact-btn">Me contacter</a>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top">↑</a>
+    
+    <script src="./scriptProjet.js"></script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Projet Base de Données Football</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/f73d9cacdb.js" crossorigin="anonymous"></script>
+    <link href="../style.css" rel="stylesheet"/>
+</head>
+<body id="projet">
+    <div class="cursor"></div>
+    
+    <header>
+        <div class="container header-content">
+            <h1 class="neon-text">Base de Données Football</h1>
+            <p class="subtitle">SAÉ 1.04 - Conception et implantation d'une Base de Données</p>
+            <div>
+                <span class="tech-badge">SQL</span>
+                <span class="tech-badge">Modélisation</span>
+                <span class="tech-badge">UML</span>
+            </div>
+        </div>
+    </header>
+        
+    <section>
+        <div class="container">
+            <div class="project-details">
+                <div class="project-card">
+                    <h2>Présentation du projet</h2>
+                    <p>Ce projet consistait à concevoir et implémenter une base de données pour la gestion des résultats des championnats de football en France, aussi bien masculins que féminins. L'objectif était de mettre en pratique les concepts fondamentaux de modélisation de bases de données, d'identification des dépendances fonctionnelles et d'implantation en SQL.</p>
+                    <br>
+                    <p>Il s'inscrit dans le cadre de la compétence <span class="neon-text">"Concevoir et mettre en place une base de données"</span> et plus spécifiquement l'apprentissage critique "Mettre à jour et interroger une base".</p>
+                </div>
+                
+                <div class="project-card">
+                    <h2>Informations clés</h2>
+                    <ul class="info-list">
+                        <li><strong>Module :</strong> S1.04</li>
+                        <li><strong>Compétence :</strong> Concevoir et mettre en place une base de données</li>
+                        <li><strong>Apprentissage critique :</strong> Mettre à jour et interroger une base</li>
+                        <li><strong>Langage :</strong> SQL</li>
+                        <li><strong>Durée :</strong> 3 semaines</li>
+                        <li><strong>Livrables :</strong> Rapports PDF, diagrammes UML, script SQL</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <h2>Étapes du projet</h2>
+                <div class="progress-steps">
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">Analyse</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">Conception</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <div class="step-text">Implémentation</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">4</div>
+                        <div class="step-text">Validation</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-images">
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Diagramme UML de la base de données">
+                </div>
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Capture d'écran de requêtes SQL">
+                </div>
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Modèle Entité-Association">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: #0a0a0a; color: #f0f0f0; position: relative;">
+        <div id="canvas-container"></div>
+        <div class="container">
+            <h2 class="neon-text">Description détaillée</h2>
+            <p>La base de données devait permettre de gérer les informations relatives aux championnats de football en France, incluant les clubs, les équipes, les joueurs, les matches, et leurs résultats. Ce système d'information devait représenter fidèlement les relations complexes entre ces différentes entités.</p>
+            <br>
+            <p>Ce projet m'a permis de mettre en pratique plusieurs concepts fondamentaux de bases de données :</p>
+            
+            <div class="competence-grid">
+                <div class="competence-card">
+                    <div class="competence-title">Modélisation conceptuelle</div>
+                    <p>Création d'un diagramme de classes UML pour représenter les entités et leurs relations dans le système d'information.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Dépendances fonctionnelles</div>
+                    <p>Identification des dépendances fonctionnelles fortes et faibles pour assurer la cohérence des données.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Normalisation</div>
+                    <p>Application des formes normales pour optimiser la structure de la base de données et minimiser la redondance.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Modélisation relationnelle</div>
+                    <p>Transformation du modèle conceptuel en modèle relationnel avec définition des clés primaires et étrangères.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container competence-section">
+            <h2>Méthodologie</h2>
+            <p>Le développement de ce projet a suivi une approche structurée en plusieurs phases :</p>
+            
+            <div class="project-details" style="margin-top: 30px;">
+                <div class="project-card">
+                    <h3>Phase 1: Analyse du système d'information</h3>
+                    <p>Étude approfondie du cahier des charges pour comprendre les besoins et les contraintes du système. Cette phase comprenait l'identification des entités principales (clubs, équipes, joueurs, matches) et leurs relations.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Phase 2: Modélisation conceptuelle</h3>
+                    <p>Création d'un diagramme de classes UML avec Visual Paradigm pour représenter graphiquement la structure de la base de données. Cette phase incluait la définition des attributs, des associations et des cardinalités.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Phase 3: Identification des dépendances</h3>
+                    <p>Analyse des dépendances fonctionnelles fortes et faibles entre les différents attributs pour garantir l'intégrité et la cohérence des données stockées dans le système.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Phase 4: Implémentation et validation</h3>
+                    <p>Transformation du modèle conceptuel en schéma relationnel, puis implémentation en SQL. Cette phase comprenait également des tests pour valider la structure et les requêtes sur la base de données.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: #0a0a0a; color: #f0f0f0; position: relative;">
+        <div class="container">
+            <h2 class="neon-text">Spécificités du système</h2>
+            <p>Le système d'information devait prendre en compte plusieurs particularités du domaine du football :</p>
+            
+            <div class="competence-grid">
+                <div class="competence-card">
+                    <div class="competence-title">Structure des clubs et équipes</div>
+                    <p>Modélisation de la relation entre les clubs qui peuvent avoir plusieurs équipes, mais évoluant forcément dans des championnats différents.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Organisation des championnats</div>
+                    <p>Représentation des ligues, des saisons et des journées de championnat avec leurs spécificités (matches à domicile/extérieur).</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Gestion des joueurs</div>
+                    <p>Suivi des joueurs, de leurs caractéristiques, de leur engagement dans les équipes et de leur participation aux matches.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Gestion des résultats</div>
+                    <p>Enregistrement des scores, des cartons et des performances des joueurs pour chaque match du championnat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2>Compétences acquises</h2>
+            <div class="project-details">
+                <div class="project-card">
+                    <h3>Conception de bases de données</h3>
+                    <ul class="info-list">
+                        <li>Analyse des besoins et identification des entités</li>
+                        <li>Modélisation UML avec Visual Paradigm</li>
+                        <li>Application des principes de normalisation</li>
+                        <li>Transformation du modèle conceptuel en modèle relationnel</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Programmation SQL</h3>
+                    <ul class="info-list">
+                        <li>Création de tables et définition de contraintes</li>
+                        <li>Implémentation de clés primaires et étrangères</li>
+                        <li>Développement de requêtes complexes</li>
+                        <li>Optimisation des performances de la base</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Méthodologie de projet</h3>
+                    <ul class="info-list">
+                        <li>Organisation du travail en équipe</li>
+                        <li>Respect des délais et des livrables</li>
+                        <li>Documentation des choix de conception</li>
+                        <li>Présentation et justification des décisions techniques</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Analyse et résolution de problèmes</h3>
+                    <ul class="info-list">
+                        <li>Identification des dépendances fonctionnelles</li>
+                        <li>Résolution des problèmes de redondance</li>
+                        <li>Gestion des contraintes d'intégrité</li>
+                        <li>Vérification de la cohérence du modèle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: #0a0a0a; color: #f0f0f0; position: relative;">
+        <div class="container">
+            <h2 class="neon-text">Livrables du projet</h2>
+            
+            <div class="competence-grid">
+                <div class="competence-card">
+                    <div class="competence-title">Rapport d'analyse</div>
+                    <p>Document PDF présentant l'ensemble des dépendances fonctionnelles identifiées (fortes et faibles) dans le système d'information.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Diagramme de classes</div>
+                    <p>Modélisation UML réalisée avec Visual Paradigm et exportée en format image, représentant la structure conceptuelle de la base de données.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Documentation technique</div>
+                    <p>Explications détaillées des choix de modélisation et des règles de gestion implémentées pour répondre aux spécificités du domaine.</p>
+                </div>
+                
+                <div class="competence-card">
+                    <div class="competence-title">Script SQL</div>
+                    <p>Fichier contenant les instructions SQL pour la création des tables, l'établissement des contraintes et l'insertion des données de test.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 - Projet Base de Données Football - SAÉ 1.04</p>
+            <p>Développé dans le cadre des études universitaires</p>
+            <div class="social-icons">
+                <a aria-label="GitHub" href="https://github.com/Tx-diloxi" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a aria-label="Mail" href="marceaulesech@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a aria-label="LinkedIn" href="https://www.linkedin.com/in/marceau-le-sech-38a60b353/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <a href="../contacter.html" class="contact-btn">Me contacter</a>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top">↑</a>
+    
+    <script src="./scriptProjet.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Projet Snake en C</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/f73d9cacdb.js" crossorigin="anonymous"></script>
+    <link href="../style.css" rel="stylesheet"/>
+</head>
+<body id="projet">
+    <div class="cursor"></div>
+    
+    <header>
+        <div class="container header-content">
+            <h1 class="neon-text">Projet Snake en C</h1>
+            <p class="subtitle">SAÉ 1.01 - Conception et implémentation d'un jeu classique</p>
+            <div>
+                <span class="tech-badge">C</span>
+                <span class="tech-badge">Algorithmique</span>
+                <span class="tech-badge">Programmation</span>
+            </div>
+        </div>
+    </header>
+        
+    <section>
+        <div class="container">
+            <div class="project-details">
+                <div class="project-card">
+                    <h2>Présentation du projet</h2>
+                    <p>Ce projet consistait à développer une version fonctionnelle du jeu classique "Snake" en utilisant le langage de programmation C. L'objectif était de mettre en pratique les concepts fondamentaux de la programmation, de l'algorithmique et de la gestion de structures de données.</p>
+                    <br>
+                    <p>Il s'inscrit dans le cadre de la compétence <span class="neon-text">"Développer des applications informatiques"</span> et plus spécifiquement l'apprentissage critique "Implémenter des conceptions simples".</p>
+                </div>
+                
+                <div class="project-card">
+                    <h2>Informations clés</h2>
+                    <ul class="info-list">
+                        <li><strong>Module :</strong> S1.01</li>
+                        <li><strong>Compétence :</strong> Développer des applications informatiques</li>
+                        <li><strong>Apprentissage critique :</strong> Implémenter des conceptions simples</li>
+                        <li><strong>Langage :</strong> C</li>
+                        <li><strong>Durée :</strong> 4 semaines</li>
+                        <li><strong>Livrables :</strong> Fichiers ODS, PDF, images, programme C</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <h2>Étapes du projet</h2>
+                <div class="progress-steps">
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">Maquette</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">Cahier de tests</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <div class="step-text">Implémentation</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">4</div>
+                        <div class="step-text">Tests</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-images">
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Capture d'écran du jeu Snake">
+                </div>
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Maquette du jeu">
+                </div>
+                <div class="preview-img">
+                    <img src="/api/placeholder/400/300" alt="Diagramme de conception">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: #0a0a0a; color: #f0f0f0; position: relative;">
+        <div id="canvas-container"></div>
+        <div class="container">
+            <h2 class="neon-text">Description détaillée</h2>
+            <p>Le jeu Snake est un classique où le joueur contrôle un serpent qui se déplace dans une grille. L'objectif est de manger des pommes "6" pour grandir tout en évitant de heurter les murs ou son propre corps.</p>
+            <br>
+            <p>Ce projet m'a permis de mettre en pratique plusieurs concepts fondamentaux de programmation :</p>
+            
+            <div class="competence-grid">
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Structures de données</div>
+                    <p>Utilisation de tableaux et de structures pour représenter le serpent et la grille de jeu.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Algorithmes</div>
+                    <p>Implémentation d'algorithmes pour la détection de collisions et le déplacement du serpent.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Programmation procédurale</div>
+                    <p>Organisation du code en fonctions modulaires pour une meilleure maintenance.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Gestion d'états</div>
+                    <p>Suivi et mise à jour de l'état du jeu en réponse aux actions du joueur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container competence-section">
+            <h2>Méthodologie</h2>
+            <p>Le développement de ce projet a suivi une approche structurée en plusieurs phases :</p>
+            
+            <div class="project-details" style="margin-top: 30px;">
+                <div class="project-card">
+                    <h3>Phase 1: Maquette</h3>
+                    <p>Élaboration d'une maquette détaillée pour visualiser l'interface utilisateur et les interactions. Cette phase a permis de définir l'apparence du jeu et les fonctionnalités à implémenter.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Phase 2: Cahier de tests</h3>
+                    <p>Création d'un cahier de tests détaillant les différents scénarios à vérifier pour garantir le bon fonctionnement du jeu. Cela inclut les tests unitaires pour chaque fonctionnalité et les tests d'intégration.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Phase 3: Implémentation</h3>
+                    <p>Programmation du jeu en langage C, en suivant la maquette et en respectant les bonnes pratiques de développement. Cette phase comprenait la création de l'interface, la logique de jeu et la gestion des entrées utilisateur.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Phase 4: Test et validation</h3>
+                    <p>Exécution des tests définis dans le cahier pour valider le bon fonctionnement du jeu et corriger les éventuels bugs. Cette phase a également permis d'optimiser les performances et d'améliorer l'expérience utilisateur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: #0a0a0a; color: #f0f0f0; position: relative;">
+        <div class="container">
+            <h2 class="neon-text">Compétences acquises</h2>
+            <p>Ce projet m'a permis de développer et renforcer plusieurs compétences clés en développement logiciel :</p>
+            
+            <div class="competence-grid">
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Maîtrise du langage C</div>
+                    <p>Approfondissement des connaissances en programmation C, notamment la gestion de la mémoire et les structures de données.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Conception logicielle</div>
+                    <p>Élaboration d'une architecture logicielle cohérente et maintenable pour un projet complexe.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Tests et débogage</div>
+                    <p>Création et exécution de tests pour identifier et résoudre les problèmes dans le code.</p>
+                </div>
+                
+                <div class="competence-card" style="border-left-color: var(--primary-color);">
+                    <div class="competence-title">Documentation</div>
+                    <p>Rédaction d'une documentation claire et complète du code et des fonctionnalités implémentées.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2>Livrables</h2>
+            <div class="project-details">
+                <div class="project-card">
+                    <h3>Documentation</h3>
+                    <ul class="info-list">
+                        <li>Cahier des charges au format PDF</li>
+                        <li>Manuel utilisateur</li>
+                        <li>Rapport de projet détaillant la conception et l'implémentation</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Code source</h3>
+                    <ul class="info-list">
+                        <li>Fichiers source en langage C</li>
+                        <li>Makefiles pour la compilation</li>
+                        <li>Fichiers de ressources (sprites, sons, etc.)</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Tests</h3>
+                    <ul class="info-list">
+                        <li>Cahier de tests au format ODS</li>
+                        <li>Scripts de tests automatisés</li>
+                        <li>Rapport de validation des tests</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Présentation</h3>
+                    <ul class="info-list">
+                        <li>Diaporama de présentation</li>
+                        <li>Démonstration exécutable du jeu</li>
+                        <li>Captures d'écran et images du jeu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 - Projet Snake en C - SAÉ 1.01</p>
+            <p>Développé dans le cadre des études universitaires</p>
+            <div class="social-icons">
+                <a aria-label="GitHub" href="https://github.com/Tx-diloxi" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a aria-label="Mail" href="marceaulesech@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a aria-label="LinkedIn" href="https://www.linkedin.com/in/marceau-le-sech-38a60b353/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <a href="../contacter.html" class="contact-btn">Me contacter</a>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top">↑</a>
+    
+    <script src="./scriptProjet.js"></script>
+</body>
+</html>
