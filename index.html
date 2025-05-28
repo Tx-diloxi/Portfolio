@@ -1,0 +1,144 @@
+<html class="scroll-smooth" lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Portfolio | Marceau LE SECH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Pacifico&amp;display=swap" rel="stylesheet"/>
+    <link href="files/style.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/f73d9cacdb.js" crossorigin="anonymous"></script>
+  </head>
+  
+  <body id="index">
+    <div class="cursor" id="cursor"></div>
+
+    <main>
+      <!-- Section 1: Hero -->
+      <section class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 overflow-hidden">
+        <div class="z-10 max-w-4xl">
+          
+          <h1 class="hero-name text-7xl md:text-9xl neon-text select-none leading-none">LE SECH Marceau</h1>
+
+          <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-xl mx-auto font-semibold tracking-wide">
+            1ère année à Lannion - Passionné par le développement web et la programmation
+          </p>
+          <div class="mt-8 flex justify-center space-x-6 social-icons">
+            <a aria-label="GitHub" href="https://github.com/Tx-diloxi" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i>
+            </a>
+            <a aria-label="Mail" href="marceaulesech@gmail.com" target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/marceau-le-sech-38a60b353/" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          <a href="#moi">
+            <button aria-label="Descendre vers la section À propos" class="btn-primary mt-12" id="scrollDownBtn">
+              Découvrir
+            </button>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 2: À propos de moi -->
+      <section id="moi" class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]">
+        <div class="max-w-3xl">
+          <h2 class="text-5xl font-bold neon-text mb-6 select-none">À propos de moi</h2>
+          <p class="text-gray-300 text-lg md:text-xl leading-relaxed tracking-wide">
+            Actuellement en première année de BUT Informatique, je me destine à une spécialisation en développement web et mobile. Curieux, rigoureux et motivé, j’ai choisi d’orienter mon parcours dans ce domaine, animé par l’envie constante d’apprendre et de relever de nouveaux défis techniques.
+          </p>
+          <p class="mt-4 text-gray-400 text-lg md:text-xl leading-relaxed tracking-wide">
+            Au fil de mes apprentissages, le développement web et mobile s’est révélé être une véritable vocation. Concevoir des applications durables, performantes et centrées sur l’expérience utilisateur est, à mes yeux, un enjeu clé pour aujourd’hui et demain. Le mobile transforme notre quotidien, et je souhaite contribuer activement à cette évolution.
+          </p>
+          <a href="files/CV.pdf" class="download-cv" download>
+            <button class="btn-primary mt-10" >
+              CV
+            </button>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 3: Mes projets -->
+      <section class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 bg-[#111111]">
+        <h2 class="text-5xl font-bold neon-text mb-12 select-none">Mes projets</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl w-full">
+          <!-- Project 1 -->
+          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.01.html" target="_blank" rel="noopener noreferrer">
+            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/projet_1.01.png" height="400" width="600"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 text-left text-white">
+              <h3 class="text-xl font-semibold">Jeu en C</h3>
+              <p class="text-sm opacity-80 mt-1">Un petit jeu interactif codé en langage C.</p>
+            </div>
+          </a>
+
+          <!-- Project 2 -->
+          <a aria-label="Projet : Site web portfolio étudiant" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.02.html" target="_blank" rel="noopener noreferrer">
+            <img alt="Capture d'écran d'un site web portfolio étudiant avec design moderne et couleurs bleues" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/projet_1.02.png" height="400" width="600"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 text-left text-white">
+              <h3 class="text-xl font-semibold">Comparaison d'algorithmes</h3>
+              <p class="text-sm opacity-80 mt-1">Snake autonome et analyse de performance des algorithmes.</p>
+            </div>
+          </a>
+          
+          <!-- Project 3 -->
+          <a aria-label="Projet : Application de gestion de tâches" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.03.html" target="_blank" rel="noopener noreferrer">
+            <img alt="Capture d'écran d'une application de gestion de tâches avec interface claire et bleue" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/projet_1.03.png" height="400" width="600"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 text-left text-white">
+              <h3 class="text-xl font-semibold">Gestion de tâches</h3>
+              <p class="text-sm opacity-80 mt-1">Installation d'un Poste de Développement.</p>
+            </div>
+          </a>
+
+          <!-- Project 4 -->
+          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.04.html" target="_blank" rel="noopener noreferrer">
+            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/projet_1.04.png" height="400" width="600"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 text-left text-white">
+              <h3 class="text-xl font-semibold">Base de Données</h3>
+              <p class="text-sm opacity-80 mt-1">Projet Base de Données Football.</p>
+            </div>
+          </a>
+
+          <!-- Project 5 -->
+          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.05.html" target="_blank" rel="noopener noreferrer">
+            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/projet_1.05.png" height="400" width="600"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 text-left text-white">
+              <h3 class="text-xl font-semibold">Site sur les JO</h3>
+              <p class="text-sm opacity-80 mt-1">Site Web JO Paris 2024.</p>
+            </div>
+          </a>
+
+          <!-- Project 6 -->
+          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.06.html" target="_blank" rel="noopener noreferrer">
+            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/projet_1.06.png" height="400" width="600"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 text-left text-white">
+              <h3 class="text-xl font-semibold">Jeu JavaScript</h3>
+              <p class="text-sm opacity-80 mt-1">Projet Environnement économique.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 4: Contact -->
+      <section class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 bg-gradient-to-t from-[#1a1a1a] to-[#0a0a0a]">
+        <h2 class="text-5xl font-bold neon-text mb-6 select-none">Contactez-moi</h2>
+        <p class="text-gray-300 max-w-xl text-lg md:text-xl leading-relaxed tracking-wide">
+          Vous souhaitez collaborer ou simplement échanger ? N'hésitez pas à me contacter !
+        </p>
+        <a aria-label="Envoyer un email à l'étudiant" class="btn-primary mt-10 inline-block" href="files/contacter.html">Me contacter</a>
+      </section>
+    </main>
+
+    <div aria-hidden="true" id="scroll-indicator">
+      <div class="dot"></div>
+    </div>
+    <script src="files/script.js"></script>
+  </body>
+</html>
