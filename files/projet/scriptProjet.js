@@ -57,3 +57,40 @@ document.querySelectorAll('.project-card, .competence-card').forEach(card => {
     card.style.transition = 'all 0.6s ease';
     observer.observe(card);
 });
+
+// Gestion du header sticky
+let lastScrollY = window.scrollY;
+const stickyHeader = document.getElementById('stickyHeader');
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Défilement vers le bas - cacher le header
+        stickyHeader.classList.add('hidden');
+    } else if (currentScrollY < lastScrollY) {
+        // Défilement vers le haut - montrer le header
+        stickyHeader.classList.remove('hidden');
+    }
+    
+    lastScrollY = currentScrollY;
+});
+
+// Gestion du bouton retour en haut
+const backToTop = document.querySelector('.back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTop.style.opacity = '0.8';
+    } else {
+        backToTop.style.opacity = '0';
+    }
+});
+
+backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
