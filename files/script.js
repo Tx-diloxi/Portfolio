@@ -5,19 +5,6 @@ window.addEventListener('mousemove', (e) => {
   cursor.style.left = e.clientX + 'px';
 });
 
-const interactiveElements = [
-  ...document.querySelectorAll('a, button, .btn-primary, .group')
-];
-
-interactiveElements.forEach((el) => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('active');
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('active');
-  });
-});
-
 const scrollDownBtn = document.getElementById('scrollDownBtn');
 const scrollToWorkBtn = document.getElementById('scrollToWorkBtn');
 
