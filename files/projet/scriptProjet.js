@@ -6,13 +6,6 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
-document.addEventListener('mousedown', () => {
-    cursor.classList.add('active');
-});
-
-document.addEventListener('mouseup', () => {
-    cursor.classList.remove('active');
-});
 
 // Add active class to clickable elements
 const clickableElements = document.querySelectorAll('a, button, .contact-btn, .project-card');
