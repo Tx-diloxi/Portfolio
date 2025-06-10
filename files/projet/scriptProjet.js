@@ -6,18 +6,15 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
-
-// Add active class to clickable elements
-const clickableElements = document.querySelectorAll('a, button, .contact-btn, .project-card');
-clickableElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.classList.add('active');
-    });
-    
-    el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('active');
-    });
+document.addEventListener('mousedown', () => {
+    cursor.classList.add('active');
 });
+
+document.addEventListener('mouseup', () => {
+    cursor.classList.remove('active');
+});
+
+
 
 // Smooth scroll for back to top
 document.querySelector('.back-to-top').addEventListener('click', (e) => {
