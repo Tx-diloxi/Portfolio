@@ -39,7 +39,7 @@ cd Portfolio
 
 ## 👀 Aperçu
 
-![Aperçu du portfolio](files/img/aperçu.png) <!-- Remplacez par le chemin réel d'une capture d'écran si elle existe -->
+![Aperçu du portfolio]([https://tx-diloxi.github.io/Portfolio/]) <!-- Remplacez par le chemin réel d'une capture d'écran si elle existe -->
 
 ## 📫 Contact
 
