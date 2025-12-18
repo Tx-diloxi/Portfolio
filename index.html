@@ -1,153 +1,162 @@
-<html class="scroll-smooth" lang="fr">
-  <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <title>Portfolio | Marceau LE SECH</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Pacifico&amp;display=swap" rel="stylesheet"/>
-    <link href="files/style.css" rel="stylesheet"/>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marceau LE SECH - Portfolio</title>
+    <!-- Police -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+
     <link rel="icon" href="./files/ppweb.png" type="image/png">
+    
     <script src="https://kit.fontawesome.com/f73d9cacdb.js" crossorigin="anonymous"></script>
+
+    <!-- Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.22/build/spline-viewer.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="files/style.css">
+
     <meta name="description" content="Portfolio de Marceau LE SECH, étudiant en 1ère année de BUT Informatique à Lannion. Découvrez mes projets en développement web et mobile."/>
     <meta name="keywords" content="Marceau LE SECH, portfolio, étudiant, développement web, programmation, Lannion, BUT Informatique, projets, contact"/>
     <meta name="author" content="Marceau LE SECH"/>
-    <meta property="og:title" content="Portfolio de Marceau LE SECH"/>
-    <meta property="og:description" content="Découvrez le portfolio de Marceau LE SECH, étudiant en 1ère année de BUT Informatique à Lannion, passionné par le développement web et mobile."/>
-    <meta property="og:image" content="files/ppweb.png"/>
-    <meta property="og:url" content="https://marceaulesech.github.io/portfolio/"/>
-    <meta property="og:type" content="website"/>
-  </head>
-  
-  <body id="index">
-    <div class="cursor" id="cursor"></div>
+</head>
+<body>
+
+    <!-- Fond Typographique -->
+    <div id="watermark">MARCEAU</div>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="index.html" id="logo">LE SECH<span>.</span></a>
+            <ul>
+                <li><a href="https://github.com/Tx-diloxi" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a aria-label="Mail" href="mailto:marceaulesech@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/marceau-le-sech" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#hero">Accueil</a></li>
+                <li><a href="#intro">Profil</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact-section">Contact</a></li> <!-- ID mis à jour pour être logique -->
+            </ul>
+        </nav>
+    </header>
 
     <main>
-      <!-- Section 1: Hero -->
-      <section class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 overflow-hidden">
-        <div class="z-10 max-w-4xl">
-          
-          <h1 class="hero-name text-7xl md:text-9xl neon-text select-none leading-none">LE SECH Marceau</h1>
-
-          <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-xl mx-auto font-semibold tracking-wide">
-            1ère année à Lannion - Passionné par le développement web et la programmation
-          </p>
-          <div class="mt-8 flex justify-center space-x-6 social-icons">
-            <a aria-label="GitHub" href="https://github.com/Tx-diloxi" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-github"></i>
-            </a>
-            <a aria-label="Mail" href="mailto:marceaulesech@gmail.com" target="_blank" rel="noopener noreferrer">
-              <i class="fa-solid fa-envelope"></i>
-            </a>
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/marceau-le-sech-38a60b353/" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-          <a href="#moi">
-            <button aria-label="Descendre vers la section À propos" class="btn-primary mt-12" id="scrollDownBtn">
-              Découvrir
-            </button>
-          </a>
-        </div>
-      </section>
-
-      <!-- Section 2: À propos de moi -->
-      <section id="moi" class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]">
-        <div class="max-w-3xl">
-          <h2 class="text-5xl font-bold neon-text mb-6 select-none">À propos de moi</h2>
-          <p class="text-gray-300 text-lg md:text-xl leading-relaxed tracking-wide">
-            Actuellement en première année de <a href="https://www.enseignementsup-recherche.gouv.fr/sites/default/files/annexe-2-licence-professionnelle-bachelor-universitaire-de-technologie-informatique-29016.pdf" style="color: 3b82f6;">BUT Informatique</a> à <a href="https://iut-lannion.univ-rennes.fr/" target="_blank" style="color: 3b82f6;">IUT de Lannion</a>, je me destine à une spécialisation en développement web et mobile. Curieux, rigoureux et motivé, j’ai choisi d’orienter mon parcours dans ce domaine, animé par l’envie constante d’apprendre et de relever de nouveaux défis techniques.
-          </p>
-          <p class="mt-4 text-gray-400 text-lg md:text-xl leading-relaxed tracking-wide">
-            Au fil de mes apprentissages, j'ai obtenu mon bac avec mention au <a href="https://www.lycee-pavie.fr/" target="_blank" style="color: 3b82f6;">lycée Auguste Pavie</a>, suite à cela le développement web et mobile s’est révélé être une véritable vocation. Concevoir des applications durables, performantes et centrées sur l’expérience utilisateur est, à mes yeux, un enjeu clé pour aujourd’hui et demain.
-          </p>
-          <a href="files/CV_Marceau_LESECH.pdf" class="download-cv" download>
-            <button class="btn-primary mt-10" >
-              CV
-            </button>
-          </a>
-        </div>
-      </section>
-
-      <!-- Section 3: Mes projets -->
-      <section id="pageProjet" class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 bg-[#111111]">
-        <h2 class="text-5xl font-bold neon-text mb-12 select-none">Mes projets</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl w-full">
-          <!-- Project 1 -->
-          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.01.html" rel="noopener noreferrer">
-            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/1/projet_1.01.png" height="400" width="600"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
-            <div class="absolute bottom-4 left-4 text-left text-white">
-              <h3 class="text-xl font-semibold">Jeu en C</h3>
-              <p class="text-sm opacity-80 mt-1">Un petit jeu interactif codé en langage C.</p>
+        <!-- SECTION 1 : 3D (Héro) -->
+        <section id="hero">
+            <div id="spline-container">
+                <spline-viewer loading-anim-type="none" url="https://prod.spline.design/JACzP9CVrdOQ9pVP/scene.splinecode"></spline-viewer>
             </div>
-          </a>
+        </section>
 
-          <!-- Project 2 -->
-          <a aria-label="Projet : Site web portfolio étudiant" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.02.html" rel="noopener noreferrer">
-            <img alt="Capture d'écran d'un site web portfolio étudiant avec design moderne et couleurs bleues" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/2/projet_1.02.png" height="400" width="600"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
-            <div class="absolute bottom-4 left-4 text-left text-white">
-              <h3 class="text-xl font-semibold">Comparaison d'algorithmes</h3>
-              <p class="text-sm opacity-80 mt-1">Snake autonome et analyse de performance des algorithmes.</p>
-            </div>
-          </a>
-          
-          <!-- Project 3 -->
-          <a aria-label="Projet : Application de gestion de tâches" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.03.html" rel="noopener noreferrer">
-            <img alt="Capture d'écran d'une application de gestion de tâches avec interface claire et bleue" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/3/projet_1.03.png" height="400" width="600"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
-            <div class="absolute bottom-4 left-4 text-left text-white">
-              <h3 class="text-xl font-semibold">Gestion de tâches</h3>
-              <p class="text-sm opacity-80 mt-1">Installation d'un Poste de Développement.</p>
-            </div>
-          </a>
+        <!-- SECTION 2 : PROFIL (Texte d'introduction) -->
+        <section id="intro">
+            <div id="hero-text">
+                <div id="status">
+                    <span></span> Recherche d'alternance / Stage
+                </div>
 
-          <!-- Project 4 -->
-          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.04.html" rel="noopener noreferrer">
-            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/4/projet_1.04.png" height="400" width="600"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
-            <div class="absolute bottom-4 left-4 text-left text-white">
-              <h3 class="text-xl font-semibold">Base de Données</h3>
-              <p class="text-sm opacity-80 mt-1">Projet Base de Données Football.</p>
-            </div>
-          </a>
+                <p>
+                    Actuellement en première année de <a href="https://www.enseignementsup-recherche.gouv.fr/sites/default/files/annexe-2-licence-professionnelle-bachelor-universitaire-de-technologie-informatique-29016.pdf" target="_blank">BUT Informatique</a> à <a href="https://iut-lannion.univ-rennes.fr/" target="_blank">l'IUT de Lannion</a>, je me destine à une spécialisation en développement web et mobile. Curieux, rigoureux et motivé, j’ai choisi d’orienter mon parcours dans ce domaine, animé par l’envie constante d’apprendre et de relever de nouveaux défis techniques.
+                </p>
+                <p>
+                    Au fil de mes apprentissages, j'ai obtenu mon bac avec mention au <a href="https://www.lycee-pavie.fr/" target="_blank">lycée Auguste Pavie</a>. Le développement web et mobile s’est révélé être une véritable vocation. Concevoir des applications durables, performantes et centrées sur l’expérience utilisateur est, à mes yeux, un enjeu clé pour aujourd’hui et demain.
+                </p>
 
-          <!-- Project 5 -->
-          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.05.html" rel="noopener noreferrer">
-            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/5/projet_1.05.png" height="400" width="600"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
-            <div class="absolute bottom-4 left-4 text-left text-white">
-              <h3 class="text-xl font-semibold">Site sur les JO</h3>
-              <p class="text-sm opacity-80 mt-1">Site Web JO Paris 2024.</p>
+                <div id="buttons">
+                    <a href="#projets">Voir mes réalisations</a>
+                    <a href="files/CV_Marceau_LESECH.pdf" target="_blank">Mon CV</a>
+                </div>
             </div>
-          </a>
+        </section>
 
-          <!-- Project 6 -->
-          <a aria-label="Projet : Jeu simple en JavaScript" class="group relative block rounded-lg overflow-hidden shadow-lg cursor-pointer" href="files/projet/projet_1.06.html" rel="noopener noreferrer">
-            <img alt="Capture d'écran d'un jeu simple en JavaScript avec interface ludique" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="files/img/6/projet_1.06.png" height="400" width="600"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>
-            <div class="absolute bottom-4 left-4 text-left text-white">
-              <h3 class="text-xl font-semibold">Jeu JavaScript</h3>
-              <p class="text-sm opacity-80 mt-1">Projet Environnement économique.</p>
+        <!-- SECTION 3 : PROJETS -->
+                <!-- SECTION 3 : PROJETS -->
+        <section id="projets">
+            <h2>Mes Réalisations Académiques</h2>
+            <div id="grid">
+                
+                <!-- Projet 1.01 -->
+                <article>
+                    <a href="files/projet/projet_1.01.html">
+                        <img src="files/img/1/projet_1.01.png" alt="Jeu Snake">
+                        <div>
+                            <h3>Jeu en C</h3>
+                            <p>Un petit jeu interactif codé en langage C.</p>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Projet 1.02 -->
+                <article>
+                    <a href="files/projet/projet_1.02.html">
+                        <img src="files/img/2/projet_1.02.png" alt="Snake IA">
+                        <div>
+                            <h3>Comparaison d'algorithmes</h3>
+                            <p>Snake autonome et analyse de performance des algorithmes.</p>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Projet 1.03 -->
+                <article>
+                    <a href="files/projet/projet_1.03.html">
+                        <img src="files/img/3/projet_1.03.png" alt="Docker">
+                        <div>
+                            <h3>Gestion de tâches</h3>
+                            <p>Installation d'un Poste de Développement.</p>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Projet 1.04 -->
+                <article>
+                    <a href="files/projet/projet_1.04.html">
+                        <img src="files/img/4/projet_1.04.png" alt="SQL">
+                        <div>
+                            <h3>Base de Données</h3>
+                            <p>Projet Base de Données Football.</p>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Projet 1.05 -->
+                <article>
+                    <a href="files/projet/projet_1.05.html">
+                        <img src="files/img/5/projet_1.05.png" alt="Web">
+                        <div>
+                            <h3>Site sur les JO</h3>
+                            <p>Site Web JO Paris 2024.</p>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Projet 1.06 -->
+                <article>
+                    <a href="files/projet/projet_1.06.html">
+                        <img src="files/img/6/projet_1.06.png" alt="RSE">
+                        <div>
+                            <h3>Analyse RSE</h3>
+                            <p>Découverte de l'environnement économique.</p>
+                        </div>
+                    </a>
+                </article>
+
             </div>
-          </a>
-        </div>
-      </section>
+        </section>
 
-      <!-- Section 4: Contact -->
-      <section class="relative flex flex-col justify-center items-center text-center px-6 md:px-12 bg-gradient-to-t from-[#1a1a1a] to-[#0a0a0a]">
-        <h2 class="text-5xl font-bold neon-text mb-6 select-none">Contactez-moi</h2>
-        <p class="text-gray-300 max-w-xl text-lg md:text-xl leading-relaxed tracking-wide">
-          Vous souhaitez collaborer ou simplement échanger ? N'hésitez pas à me contacter !
-        </p>
-        <a aria-label="Envoyer un email à l'étudiant" class="btn-primary mt-10 inline-block" href="files/contacter.html">Me contacter</a>
-      </section>
+
+        <!-- SECTION 4 : CONTACT (Remplaçant Compétences) -->
+        <section id="contact-section">
+            <h2>Contactez-moi</h2>
+            <p>
+                Vous souhaitez collaborer ou simplement échanger ? N'hésitez pas à me contacter !
+            </p>
+            <a href="files/contacter.html" class="btn-primary">Me contacter</a>
+        </section>
     </main>
-
-    <div aria-hidden="true" id="scroll-indicator">
-      <div class="dot"></div>
-    </div>
     <script src="files/script.js"></script>
-  </body>
+</body>
 </html>
