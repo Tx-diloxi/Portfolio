@@ -39,7 +39,7 @@ cd Portfolio
 
 ## 👀 Portfolio
 
-[Portfolio](https://tx-diloxi.github.io/Portfolio/) <!-- Remplacez par le chemin réel d'une capture d'écran si elle existe -->
+[Portfolio](https://tx-diloxi.github.io/Portfolio/) 
 
 ## 📫 Contact
 
