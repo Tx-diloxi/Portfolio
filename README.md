@@ -53,4 +53,4 @@ Ce projet n’a pas de licence spécifique pour le moment.
 
 ---
 
-> Projet réalisé par Marceau LE SECH – 1ère année BUT Informatique, Lannion
+> Projet réalisé par Marceau LE SECH – 2ème année BUT Informatique, Lannion
