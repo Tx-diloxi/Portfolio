@@ -64,7 +64,7 @@ nav {
     max-width: 1200px;
 }
 
-#logo {
+#logoNom {
     font-size: 1.4rem;
     font-weight: 800;
     text-decoration: none;
@@ -72,18 +72,18 @@ nav {
     letter-spacing: 2px;
 }
 
-#logo span { color: var(--accent-red); }
+#logoNom span { color: var(--accent-red); }
 
 nav ul { display: flex; list-style: none; gap: 40px; }
 
-nav a:not(#logo) {
+nav a:not(#logoNom) {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s;
 }
 
-nav a:not(#logo):hover { color: var(--accent-cyan); }
+nav a:not(#logoNom):hover { color: var(--accent-cyan); }
 
 /* --- CONFIGURATION DES SECTIONS --- */
 section, footer {
