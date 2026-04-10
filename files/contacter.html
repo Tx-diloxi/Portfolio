@@ -32,33 +32,35 @@
         </main>
     </div>
 
-    <!-- Script for custom cursor -->
+    <!-- Script pour curseur personnalisé -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const cursor = document.querySelector('.cursor');
+            const curseur = document.querySelector('.cursor');
             
             document.addEventListener('mousemove', function(e) {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
+                if (curseur) {
+                    curseur.style.left = e.clientX + 'px';
+                    curseur.style.top = e.clientY + 'px';
+                }
             });
             
             document.addEventListener('mousedown', function() {
-                cursor.classList.add('active');
+                curseur?.classList.add('active');
             });
             
             document.addEventListener('mouseup', function() {
-                cursor.classList.remove('active');
+                curseur?.classList.remove('active');
             });
             
-            // Add active class when hovering over interactive elements
-            const interactiveElements = document.querySelectorAll('button, input, textarea, a');
-            interactiveElements.forEach(function(el) {
+            // Ajout de la classe active au survol des éléments interactifs
+            const elementsInteractifs = document.querySelectorAll('button, input, textarea, a');
+            elementsInteractifs.forEach(function(el) {
                 el.addEventListener('mouseenter', function() {
-                    cursor.classList.add('active');
+                    curseur?.classList.add('active');
                 });
                 
                 el.addEventListener('mouseleave', function() {
-                    cursor.classList.remove('active');
+                    curseur?.classList.remove('active');
                 });
             });
         });
