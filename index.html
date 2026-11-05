@@ -1,161 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marceau LE SECH - Portfolio</title>
-    <!-- Police -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
-
-    <link rel="icon" href="./files/ppweb.png" type="image/png">
-    
-    <script src="https://kit.fontawesome.com/f73d9cacdb.js" crossorigin="anonymous"></script>
-
-    <!-- Spline 3D Viewer -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.22/build/spline-viewer.js"></script>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="files/style.css">
-
-    <meta name="description" content="Portfolio de Marceau LE SECH, étudiant en 1ère année de BUT Informatique à Lannion. Découvrez mes projets en développement web et mobile."/>
-    <meta name="keywords" content="Marceau LE SECH, portfolio, étudiant, développement web, programmation, Lannion, BUT Informatique, projets, contact"/>
-    <meta name="author" content="Marceau LE SECH"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marceau LE SECH — Portfolio BUT Informatique</title>
+<meta name="description" content="Portfolio BUT3 Informatique, parcours A Réalisation d'applications : six compétences, preuves et projets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
+<canvas id="scene" aria-hidden="true"></canvas>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></svg>
+<div class="grain" aria-hidden="true"></div>
 
-    <!-- Fond Typographique -->
-    <div id="watermark">MARCEAU</div>
+<header class="hud hud-left">
+  <span class="brand">LS</span>
+  <nav id="dots" aria-label="Sections"></nav>
+</header>
+<aside class="hud hud-right" aria-hidden="true">
+  <div class="counter"><span id="cur">1</span><small>/ 7</small></div>
+  <a class="scroll-btn" href="#communes">Scroll</a>
+</aside>
 
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <a href="index.html" id="logoNom">LE SECH<span>.</span></a>
-            <ul>
-                <li><a href="https://github.com/Tx-diloxi" target="_blank"><i class="fab fa-github"></i></a></li>
-                <li><a aria-label="Mail" href="mailto:marceaulesech@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/marceau-le-sech" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                <li><a href="#hero">Accueil</a></li>
-                <li><a href="#intro">Profil</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact-section">Contact</a></li> <!-- ID mis à jour pour être logique -->
-            </ul>
-        </nav>
-    </header>
+<main id="main">
+  <section class="scene hero" id="accueil" data-title="Accueil">
+    <div class="stamp"><h1>Marceau<br>LE SECH</h1></div>
+    <p class="serif" id="baseline"></p>
+    <p class="meta" id="situation"></p>
+  </section>
 
-    <main>
-        <!-- SECTION 1 : 3D (Héro) -->
-        <section id="hero">
-            <div id="spline-container">
-                <spline-viewer loading-anim-type="none" url="https://prod.spline.design/JACzP9CVrdOQ9pVP/scene.splinecode"></spline-viewer>
-            </div>
-        </section>
+  <section class="scene" id="communes" data-title="Communes">
+    <header class="head"><span class="tag">Les racines · C3 · C4 · C5</span><h2>Les compétences communes</h2><p class="serif">Administrer, gérer, conduire</p></header>
+    <div class="cards" id="list-communes"></div>
+  </section>
 
-        <!-- SECTION 2 : PROFIL (Texte d'introduction) -->
-        <section id="intro">
-            <div id="hero-text">
-                <div id="status">
-                    <span></span> Recherche d'alternance / Stage
-                </div>
+  <section class="scene" id="parcours" data-title="Parcours A">
+    <header class="head"><span class="tag">Le tronc · C1 · C2 · C6</span><h2>Les compétences du parcours A</h2><p class="serif">Réaliser, optimiser, collaborer</p></header>
+    <div class="cards" id="list-parcours"></div>
+  </section>
 
-                <p>
-                    Actuellement en première année de <a href="https://www.enseignementsup-recherche.gouv.fr/sites/default/files/annexe-2-licence-professionnelle-bachelor-universitaire-de-technologie-informatique-29016.pdf" target="_blank">BUT Informatique</a> à <a href="https://iut-lannion.univ-rennes.fr/" target="_blank">l'IUT de Lannion</a>, je me destine à une spécialisation en développement web et mobile. Curieux, rigoureux et motivé, j’ai choisi d’orienter mon parcours dans ce domaine, animé par l’envie constante d’apprendre et de relever de nouveaux défis techniques.
-                </p>
-                <p>
-                    Au fil de mes apprentissages, j'ai obtenu mon bac avec mention au <a href="https://www.lycee-pavie.fr/" target="_blank">lycée Auguste Pavie</a>. Le développement web et mobile s’est révélé être une véritable vocation. Concevoir des applications durables, performantes et centrées sur l’expérience utilisateur est, à mes yeux, un enjeu clé pour aujourd’hui et demain.
-                </p>
+  <section class="scene" id="projets" data-title="Projets">
+    <header class="head"><span class="tag">Les branches · preuves</span><h2>Projets et traces</h2>
+      <div class="filters" id="filters"></div></header>
+    <div class="grid" id="projets-grid"></div>
+  </section>
 
-                <div id="buttons">
-                    <a href="#projets">Voir mes réalisations</a>
-                    <a href="files/CV_Marceau_LE_SECH.pdf" target="_blank">Mon CV</a>
-                </div>
-            </div>
-        </section>
+  <section class="scene" id="bilan" data-title="Bilan">
+    <header class="head"><span class="tag">Le feuillage · bilan</span><h2>Mon BUT en bref</h2><p class="serif" id="bilan-chapo"></p></header>
+    <div class="bars" id="bars"></div>
+    <div class="prose" id="bilan-corps"></div>
+  </section>
 
-        <!-- SECTION 3 : PROJETS -->
-                <!-- SECTION 3 : PROJETS -->
-        <section id="projets">
-            <h2>Mes Réalisations Académiques</h2>
-            <div id="grid">
-                
-                <!-- Projet 1.01 -->
-                <article>
-                    <a href="files/projet/projet_1.01.html">
-                        <img src="files/img/1/projet_1.01.png" alt="Jeu Snake">
-                        <div>
-                            <h3>Jeu en C</h3>
-                            <p>Un petit jeu interactif codé en langage C.</p>
-                        </div>
-                    </a>
-                </article>
+  <section class="scene" id="apres" data-title="Après le BUT">
+    <header class="head"><span class="tag">La cime · après le BUT</span><h2>Après le BUT</h2><p class="serif" id="post-chapo"></p></header>
+    <div class="cards" id="voies"></div>
+    <div class="prose" id="adequation"></div>
+  </section>
 
-                <!-- Projet 1.02 -->
-                <article>
-                    <a href="files/projet/projet_1.02.html">
-                        <img src="files/img/2/projet_1.02.png" alt="Snake IA">
-                        <div>
-                            <h3>Comparaison d'algorithmes</h3>
-                            <p>Snake autonome et analyse de performance des algorithmes.</p>
-                        </div>
-                    </a>
-                </article>
+  <section class="scene" id="contact" data-title="Contact">
+    <header class="head"><span class="tag">Vu d’en haut · contact</span><h2>Parlons-en</h2>
+      <p class="serif">Une question, un stage, une alternance : écrivez-moi, je réponds sous quelques jours</p></header>
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xeoggnzr" method="POST" novalidate>
+      <div class="field"><label for="cf-name">Nom</label><input id="cf-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field field-wide"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" rows="5" required></textarea></div>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+      <div class="form-foot field-wide">
+        <button type="submit" class="send">Envoyer le message</button>
+        <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <div class="links" id="liens"></div>
+  </section>
+</main>
 
-                <!-- Projet 1.03 -->
-                <article>
-                    <a href="files/projet/projet_1.03.html">
-                        <img src="files/img/3/projet_1.03.png" alt="Docker">
-                        <div>
-                            <h3>Gestion de tâches</h3>
-                            <p>Installation d'un Poste de Développement.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Projet 1.04 -->
-                <article>
-                    <a href="files/projet/projet_1.04.html">
-                        <img src="files/img/4/projet_1.04.png" alt="SQL">
-                        <div>
-                            <h3>Base de Données</h3>
-                            <p>Projet Base de Données Football.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Projet 1.05 -->
-                <article>
-                    <a href="files/projet/projet_1.05.html">
-                        <img src="files/img/5/projet_1.05.png" alt="Web">
-                        <div>
-                            <h3>Site sur les JO</h3>
-                            <p>Site Web JO Paris 2024.</p>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Projet 1.06 -->
-                <article>
-                    <a href="files/projet/projet_1.06.html">
-                        <img src="files/img/6/projet_1.06.png" alt="RSE">
-                        <div>
-                            <h3>Analyse RSE</h3>
-                            <p>Découverte de l'environnement économique.</p>
-                        </div>
-                    </a>
-                </article>
-
-            </div>
-        </section>
-
-
-        <!-- SECTION 4 : CONTACT (Remplaçant Compétences) -->
-        <section id="contact-section">
-            <h2>Contactez-moi</h2>
-            <p>
-                Vous souhaitez collaborer ou simplement échanger ? N'hésitez pas à me contacter !
-            </p>
-            <a href="files/contacter.html" class="btn-primary">Me contacter</a>
-        </section>
-    </main>
+<dialog id="modal"><button class="close" aria-label="Fermer">×</button><div id="modal-body"></div></dialog>
+<noscript><style>.scene{opacity:1!important}</style><p style="padding:2rem">Ce portfolio utilise JavaScript pour afficher son contenu.</p></noscript>
+<script type="module" src="/src/main.js"></script>
 </body>
 </html>
