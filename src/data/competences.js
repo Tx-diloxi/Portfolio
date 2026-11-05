@@ -57,7 +57,7 @@ export const competences = [
     /** Compétences reliées dans le réseau 3D : une arête = un projet commun. */
     edges: ['c1', 'c6'],
     /** Preuves : identifiants de projets, voir projets.js */
-    projets: ['p-infra'],
+    projets: [],
     /** Mon auto-évaluation de l'acquisition. */
     acr: {
       level: 'encours',
@@ -99,7 +99,7 @@ export const competences = [
       },
     ],
     edges: ['c1'],
-    projets: ['p-donnees'],
+    projets: [],
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
@@ -134,7 +134,7 @@ export const competences = [
       { code: 'AC35.03', texte: 'Savoir adapter un système d’information' },
     ],
     edges: ['c6', 'c1'],
-    projets: ['p-pilotage'],
+    projets: [],
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
@@ -166,7 +166,7 @@ export const competences = [
       },
     ],
     edges: ['c2', 'c4', 'c5', 'c6', 'c3'],
-    projets: ['p-sae-105', 'p-sae-101', 'p-appli-entreprise'],
+    projets: [],
     acr: {
       level: 'acquis',
       label: 'Acquis',
@@ -201,7 +201,7 @@ export const competences = [
       },
     ],
     edges: ['c1'],
-    projets: ['p-sae-102', 'p-perf'],
+    projets: [],
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
@@ -240,7 +240,7 @@ export const competences = [
       { code: 'AC36.04', texte: 'Accompagner le management de projet informatique' },
     ],
     edges: ['c1', 'c5', 'c3'],
-    projets: ['p-sae-106', 'p-equipe-entreprise'],
+    projets: [],
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',

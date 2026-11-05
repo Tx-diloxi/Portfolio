@@ -286,7 +286,12 @@ export function initScene(canvas) {
     [add(roots[1].getPointAt(0.45)), add(limbs1[1].getPointAt(0.5)), add(limbs1[0].getPointAt(0.9))],
     [0, 2, 4].map((k) => add(roots[k].getPointAt(0.42))),
     [0.25, 0.45, 0.65].map((t) => add(trunk.getPointAt(t))),
-    [0, 1, 2].flatMap((k) => [0.15, 0.32].map((t) => add(limbs1[k].getPointAt(t + k * 0.04)))).flatMap((a, i) => [a, add(trunk.getPointAt(0.55 + i * 0.07).add(V(Math.cos(i * 2.4), 0, Math.sin(i * 2.4)).multiplyScalar(0.95)))]),
+    // 16 points pour les projets : 8 sur les branches, 8 autour du tronc, en alternance
+    (() => {
+      const limb = [0, 1, 2].flatMap((k) => [0.12, 0.24, 0.36].map((t) => limbs1[k].getPointAt(t + k * 0.04))).slice(0, 8);
+      const trk = Array.from({ length: 8 }, (_, i) => trunk.getPointAt(0.46 + i * 0.07).add(V(Math.cos(i * 2.4), 0, Math.sin(i * 2.4)).multiplyScalar(0.95)));
+      return Array.from({ length: 16 }, (_, i) => add(i % 2 ? trk[(i - 1) / 2] : limb[i / 2]));
+    })(),
     [0.5, 0.8, 0.95].map((t) => add(terminals[Math.floor(terminals.length / 2)].getPointAt(t))),
     [add(crown.clone().add(V(-1.5, -1, 0))), add(crown.clone()), add(crown.clone().add(V(1.5, -1.5, 0)))],
     [add(crown.clone().add(V(-4, 0, 0))), add(crown.clone()), add(crown.clone().add(V(4, 0, 0)))],
