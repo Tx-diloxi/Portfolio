@@ -39,8 +39,12 @@ $('#filters').addEventListener('click', (e) => {
 });
 
 $('#bilan-chapo').textContent = bilan.chapo;
-$('#bars').innerHTML = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'].map((id) =>
-  `<div class="bar"><span>${esc(compById[id].motCle)}</span><i title="${NIVEAUX[progression[id]]}"><b data-w="${(progression[id] + 1) * 25}"></b></i></div>`).join('');
+$('#bars').innerHTML = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'].map((id) => {
+  const n = progression[id], niveau = NIVEAUX[n];
+  return `<div class="bar"><span>${esc(compById[id].motCle)}</span>
+    <i role="meter" aria-label="Niveau d’acquisition, ${esc(compById[id].motCle)}" aria-valuemin="0" aria-valuemax="${NIVEAUX.length - 1}" aria-valuenow="${n}" aria-valuetext="${esc(niveau)}"><b data-w="${(n + 1) * 25}"></b></i>
+    <small>${esc(niveau)}</small></div>`;
+}).join('');
 $('#bilan-corps').innerHTML = bilan.corps.map((t) => `<p>${md(esc(t))}</p>`).join('');
 $('#post-chapo').textContent = postBut.chapo;
 $('#voies').innerHTML = postBut.voies.map((v) => `<div class="card"><h3>${esc(v.libelle)}${v.actif ? ' <small class="tag">voie choisie</small>' : ''}</h3><small>${esc(v.detail)}</small></div>`).join('');
@@ -50,6 +54,7 @@ $('#liens').innerHTML = profil.liens.map((l) => `<a href="${esc(l.href)}" target
 
 /* ── Modales : naissent de l'élément cliqué, se ferment au geste ── */
 const modal = $('#modal'), body = $('#modal-body');
+modal.setAttribute('aria-labelledby', 'm-title');
 let source = null;
 const originOf = (el) => {
   const r = modal.getBoundingClientRect(), c = (el || modal).getBoundingClientRect();
@@ -104,7 +109,7 @@ const STAR = [['S', 'Situation', 'situation'], ['T', 'Tâche', 'tache'], ['A', '
 function projectHTML(p) {
   const s = p.star || {};
   return `<header class="m-head"><span class="tag">${esc(p.ref)}</span>
-      <h3>${esc(p.titre)}</h3><p class="serif">${esc(p.sousTitre || '')}</p>
+      <h3 id="m-title">${esc(p.titre)}</h3><p class="serif">${esc(p.sousTitre || '')}</p>
       <ul class="m-meta"><li>${esc(p.periode)}</li><li>${esc(p.organisation || '')}</li><li>${esc(p.duree || '')}</li></ul></header>
     ${(p.media || []).slice(0, 1).map((m) => `<figure class="m-fig"><img src="${esc(m.src)}" alt="${esc(m.alt)}"></figure>`).join('')}
     <div class="m-star">${STAR.map(([l, k, f]) => `<section ><b>${l}</b><h4>${k}</h4><p>${md(esc(s[f] || ''))}</p></section>`).join('')}</div>
@@ -118,7 +123,7 @@ function compHTML(c) {
   const preuves = (c.projets || []).concat(projets.filter((p) => p.competences.includes(c.id)).map((p) => p.id));
   const uniq = [...new Set(preuves)].map((id) => projById[id]).filter(Boolean);
   return `<header class="m-head"><span class="tag">C${c.num.slice(1)} · ${c.parcours === 'commune' ? 'Compétence commune' : 'Parcours A'}</span>
-      <div class="m-big"><span>${c.num}</span><h3>${esc(c.motCle)}</h3></div>
+      <div class="m-big"><span>${c.num}</span><h3 id="m-title">${esc(c.motCle)}</h3></div>
       <p class="serif">${esc(c.level3)}</p></header>
     <p class="m-def">${esc(c.definition)}</p>
     <h4 >Apprentissages critiques</h4>
@@ -146,6 +151,7 @@ gsap.ticker.lagSmoothing(0);
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[href^="#"]'); if (!a) return;
   e.preventDefault(); lenis.scrollTo(a.getAttribute('href'));
+  if (a.classList.contains('skip')) $('#main').focus({ preventScroll: true });
 });
 
 const STEPS = ['Arbre', 'Racines', 'Tronc', 'Branches', 'Feuillage', 'Cime', 'Ciel'];
@@ -160,7 +166,10 @@ const counter = $('#cur');
 let active = -1;
 function setActive(i) {
   if (i === active) return;
-  for (const list of [dots, stepLinks]) { list[active]?.classList.remove('on'); list[i].classList.add('on'); }
+  for (const list of [dots, stepLinks]) {
+    list[active]?.classList.remove('on'); list[active]?.removeAttribute('aria-current');
+    list[i].classList.add('on'); list[i].setAttribute('aria-current', 'true');
+  }
   const l = stepLinks[i];
   if (stepBar.scrollWidth > stepBar.clientWidth) stepBar.scrollTo({ left: l.offsetLeft - (stepBar.clientWidth - l.offsetWidth) / 2 });
   counter.textContent = i + 1;
@@ -209,6 +218,7 @@ document.body.append(hotLayer);
 HOTS.forEach((h) => {
   const b = document.createElement('button');
   b.className = h.st === 0 ? 'hot hot-hero' : 'hot'; b.type = 'button';
+  b.tabIndex = -1; b.setAttribute('aria-hidden', 'true');   // hors tabulation tant que le point n'est pas à l'écran
   b.innerHTML = `<span>${esc(h.label)}</span>`;
   b.setAttribute('aria-label', h.label);
   if (h.comp) b.dataset.comp = h.comp;
@@ -222,7 +232,12 @@ HOTS.forEach((h) => {
 });
 
 const HOT = { WINDOW: 0.32, MARGIN: 24, FLIP_LEFT: 220, FLIP_RIGHT: 200 };
-const setOn = (h, on) => { if (h.on !== on) { h.on = on; h.el.classList.toggle('on', on); } };
+const setOn = (h, on) => {
+  if (h.on === on) return;
+  h.on = on; h.el.classList.toggle('on', on);
+  h.el.tabIndex = on ? 0 : -1;
+  if (on) h.el.removeAttribute('aria-hidden'); else h.el.setAttribute('aria-hidden', 'true');
+};
 gsap.ticker.add(() => {
   const st = currentStation(), w = innerWidth, hgt = innerHeight;
   three.setStation(st);
@@ -241,14 +256,21 @@ gsap.ticker.add(() => {
 
 /* ── Formulaire de contact : envoi via Formspree, sans quitter la page ── */
 const form = $('#contact-form'), status = $('#cf-status');
+const ERREURS = { 'cf-name': 'Indiquez votre nom', 'cf-email': 'Indiquez votre adresse email', 'cf-msg': 'Écrivez votre message' };
+const setError = (f, msg) => {
+  const box = f.closest('.field'), out = $('#' + f.id + '-err');
+  box.classList.toggle('invalid', !!msg);
+  out.textContent = msg || '';
+  if (msg) f.setAttribute('aria-invalid', 'true'); else f.removeAttribute('aria-invalid');
+};
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   status.className = 'form-status';
   const bad = [...form.querySelectorAll('[required]')].filter((f) => !f.checkValidity());
-  form.querySelectorAll('.field').forEach((f) => f.classList.remove('invalid'));
+  form.querySelectorAll('[required]').forEach((f) => setError(f, ''));
   if (bad.length) {
-    bad.forEach((f) => f.closest('.field').classList.add('invalid'));
-    status.textContent = bad.some((f) => f.type === 'email' && f.value) ? 'Cette adresse email ne semble pas valide' : 'Merci de remplir les trois champs';
+    bad.forEach((f) => setError(f, f.type === 'email' && f.value ? 'Adresse email invalide, par exemple nom@domaine.fr' : ERREURS[f.id]));
+    status.textContent = bad.length === 1 ? 'Un champ est à corriger' : `${bad.length} champs sont à corriger`;
     status.classList.add('err');
     bad[0].focus();
     return;
@@ -268,4 +290,4 @@ form.addEventListener('submit', async (e) => {
     btn.disabled = false; btn.textContent = 'Envoyer le message';
   }
 });
-form.querySelectorAll('input, textarea').forEach((f) => f.addEventListener('input', () => f.closest('.field')?.classList.remove('invalid')));
+form.querySelectorAll('[required]').forEach((f) => f.addEventListener('input', () => f.getAttribute('aria-invalid') && setError(f, '')));

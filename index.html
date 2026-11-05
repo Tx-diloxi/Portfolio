@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
 <canvas id="scene" aria-hidden="true"></canvas>
 <svg width="0" height="0" aria-hidden="true" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter></svg>
 <div class="grain" aria-hidden="true"></div>
@@ -17,14 +18,14 @@
   <span class="brand">LS</span>
   <nav id="dots" aria-label="Sections"></nav>
 </header>
-<aside class="hud hud-right" aria-hidden="true">
-  <div class="counter"><span id="cur">1</span><small>/ 7</small></div>
-  <a class="scroll-btn" href="#communes">Scroll</a>
+<aside class="hud hud-right" aria-label="Position et défilement">
+  <div class="counter" aria-hidden="true"><span id="cur">1</span><small>/ 7</small></div>
+  <a class="scroll-btn" href="#communes" aria-label="Défiler vers les compétences">Scroll</a>
 </aside>
 
-<main id="main">
+<main id="main" tabindex="-1">
   <section class="scene hero" id="accueil" data-title="Accueil">
-    <div class="stamp"><h1>Marceau<br>LE SECH</h1></div>
+    <div class="stamp"><h1>Marceau <br>LE SECH</h1></div>
     <p class="serif" id="baseline"></p>
     <p class="meta" id="situation"></p>
   </section>
@@ -61,9 +62,10 @@
     <header class="head"><span class="tag">Vu d’en haut · contact</span><h2>Parlons-en</h2>
       <p class="serif">Une question, un stage, une alternance : écrivez-moi, je réponds sous quelques jours</p></header>
     <form class="contact-form" id="contact-form" action="https://formspree.io/f/xeoggnzr" method="POST" novalidate>
-      <div class="field"><label for="cf-name">Nom</label><input id="cf-name" name="name" autocomplete="name" required></div>
-      <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="field field-wide"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" rows="5" required></textarea></div>
+      <p class="form-note field-wide">Tous les champs sont obligatoires</p>
+      <div class="field"><label for="cf-name">Nom</label><input id="cf-name" name="name" autocomplete="name" required aria-describedby="cf-name-err"><p class="field-err" id="cf-name-err"></p></div>
+      <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required aria-describedby="cf-email-err"><p class="field-err" id="cf-email-err"></p></div>
+      <div class="field field-wide"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" rows="5" required aria-describedby="cf-msg-err"></textarea><p class="field-err" id="cf-msg-err"></p></div>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
       <div class="form-foot field-wide">
         <button type="submit" class="send">Envoyer le message</button>
