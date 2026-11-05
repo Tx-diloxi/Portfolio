@@ -219,3 +219,17 @@ a.card{text-decoration:none;color:inherit}
 .hint{font-size:.875rem;color:var(--ink-2);margin-top:-8px}
 .hots.peek .hot span{opacity:1}
 .hots.peek .hot:not(.hot-hero) span{opacity:1}
+
+/* Projets : sur grand écran, ce sont les « + » de l'arbre qui les ouvrent.
+   La liste reste lisible au clavier et par les lecteurs d'écran (visible dès qu'elle prend le focus). */
+.proj-hint{display:none}
+@media (min-width:701px){
+  .proj-hint{display:block;margin-top:16px;color:var(--ink-2)}
+  #projets:not(.list-open) #projets-grid:not(:focus-within){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  #projets .head{margin-bottom:0}
+}
+
+.list-toggle{display:none;font:inherit;font-size:.875rem;background:none;color:var(--ink);border:1px solid var(--line-strong);padding:6px 14px;cursor:pointer;justify-self:start;margin-top:12px;transition:background-color .2s var(--ease)}
+.list-toggle:hover{background:var(--paper-2)}
+@media (min-width:701px){.list-toggle{display:inline-block;width:max-content}#projets.list-open .proj-hint{display:none}}
+@media (min-width:701px){#projets:not(.list-open){min-height:320vh}}

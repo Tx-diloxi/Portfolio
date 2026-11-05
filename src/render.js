@@ -50,7 +50,7 @@ export const compHTML = (c, { nojs = false } = {}) => {
     <h4>Apprentissages critiques</h4>
     <ol class="m-ac">${c.acs.map((a) => `<li><code>${a.code}</code><span>${esc(a.texte)}</span></li>`).join('')}</ol>
     <h4>Preuves</h4>
-    <div class="m-proofs">${uniq.map((p) => chip(nojs, 'proj', p.id, `${esc(p.ref)} — ${esc(p.titre)}`)).join('') || '—'}</div>`;
+    <div class="m-proofs">${uniq.map((p) => chip(nojs, 'proj', p.id, `${esc(p.ref)} : ${esc(p.titre)}`)).join('') || 'Aucune'}</div>`;
 };
 
 /** Contenu de chaque zone de la page, par identifiant. */
@@ -70,7 +70,7 @@ export const fill = (nojs = false) => ({
   'bilan-corps': bilan.corps.map((t) => `<p>${md(esc(t))}</p>`).join(''),
   'post-chapo': esc(postBut.chapo),
   voies: postBut.voies.map((v) => `<div class="card"><h3>${esc(v.libelle)}${v.actif ? ' <small class="tag">voie choisie</small>' : ''}</h3><small>${esc(v.detail)}</small></div>`).join(''),
-  adequation: postBut.adequation.map((a) => `<p><strong>${esc(a.competence || '')}</strong> — ${esc(a.texte || '')}</p>`).join(''),
+  adequation: postBut.adequation.map((a) => `<p><strong>${esc(a.competence || '')}</strong> : ${esc(a.texte || '')}</p>`).join(''),
   liens: profil.liens.map((l) => {
     const ext = !l.href.startsWith('mailto:');
     return `<a href="${esc(l.href)}" ${ext ? 'target="_blank" ' : ''}rel="noopener">${esc(l.label)}${ext ? SR_TAB : ''}</a>`;

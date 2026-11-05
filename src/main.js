@@ -21,6 +21,16 @@ $('#filters').addEventListener('click', (e) => {
   document.querySelectorAll('#projets-grid .card').forEach((c) => {
     c.hidden = b.dataset.f !== 'tous' && !c.dataset.comps.split(' ').includes(b.dataset.f);
   });
+  for (const h of HOTS) if (h.comps) h.hide = b.dataset.f !== 'tous' && !h.comps.includes(b.dataset.f);
+  ScrollTrigger.refresh();
+});
+
+const projSec = $('#projets'), listBtn = $('#list-toggle');
+listBtn.addEventListener('click', () => {
+  const open = projSec.classList.toggle('list-open');
+  listBtn.setAttribute('aria-expanded', String(open));
+  listBtn.textContent = open ? 'Voir l’arbre' : 'Voir la liste';
+  for (const h of HOTS) if (h.proj) h.listHide = open;
   ScrollTrigger.refresh();
 });
 
@@ -156,7 +166,7 @@ const HOTS = [
   ...[['Compétences', '#communes'], ['Projets', '#projets'], ['Contact', '#contact']].map(([label, go], i) => ({ st: 0, a: three.heroAnchors?.[i], label, go })),
   ...['c3', 'c4', 'c5'].map((id, i) => ({ st: 1, a: L[0]?.[i], label: `C${compById[id].num.slice(1)} · ${compById[id].motCle}`, comp: id })),
   ...['c1', 'c2', 'c6'].map((id, i) => ({ st: 2, a: L[1]?.[i], label: `C${compById[id].num.slice(1)} · ${compById[id].motCle}`, comp: id })),
-  ...projets.slice(0, 3).map((p, i) => ({ st: 3, a: L[2]?.[i], label: p.titre, proj: p.id })),
+  ...projets.map((p, i) => ({ st: 3, a: L[2]?.[i], label: p.titre, proj: p.id, comps: p.competences })),
   { st: 4, a: L[3]?.[1], label: 'Après le BUT', go: '#apres' },
   { st: 5, a: L[4]?.[1], label: 'Me contacter', go: '#contact' },
   ...[lien('github'), lien('linkedin'), { label: 'CV', href: profil.cv }].filter(Boolean).map((l, i) => ({ st: 6, a: L[5]?.[i], label: l.label, href: l.href })),
@@ -188,13 +198,21 @@ const setOn = (h, on) => {
   h.el.tabIndex = on ? 0 : -1;
   if (on) h.el.removeAttribute('aria-hidden'); else h.el.setAttribute('aria-hidden', 'true');
 };
+/* Palier : la caméra reste posée sur les branches pendant une bonne partie du défilement de la section Projets */
+const DWELL = { at: 3, hold: 0.5 };
+const dwell = (s) => {
+  const f = s - DWELL.at;
+  if (Math.abs(f) >= 1 || MOBILE.matches) return s;
+  const u = Math.max(0, (Math.abs(f) - DWELL.hold) / (1 - DWELL.hold));
+  return DWELL.at + Math.sign(f) * u * u * (3 - 2 * u);
+};
 gsap.ticker.add(() => {
-  const st = currentStation(), w = innerWidth, hgt = innerHeight;
-  three.setStation(st);
+  const raw = currentStation(), st = dwell(raw), w = innerWidth, hgt = innerHeight;
+  three.setOrbit(MOBILE.matches || reduce ? null : DWELL); three.setStation(raw);
   for (const h of HOTS) {
-    if (Math.abs(st - h.st) >= HOT.WINDOW || (h.st > 0 && MOBILE.matches)) { setOn(h, false); continue; }
+    if (h.hide || h.listHide || Math.abs(st - h.st) >= HOT.WINDOW || (h.st > 0 && MOBILE.matches)) { setOn(h, false); continue; }
     const p = three.project(h.a);
-    const ok = p && p.x > HOT.MARGIN && p.x < w - HOT.MARGIN && p.y > HOT.MARGIN && p.y < hgt - HOT.MARGIN;
+    const ok = p && !(h.proj && !MOBILE.matches && p.x < w * 0.5 && p.y < hgt * 0.62) && p.x > HOT.MARGIN && p.x < w - HOT.MARGIN && p.y > HOT.MARGIN && p.y < hgt - HOT.MARGIN;
     setOn(h, !!ok);
     if (!ok) continue;
     const tf = `translate(${p.x}px, ${p.y}px)`;

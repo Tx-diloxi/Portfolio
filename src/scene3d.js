@@ -57,7 +57,7 @@ const taper = (r0, r1, tipClose = true) => (t) =>
 export function initScene(canvas) {
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); }
-  catch { return { setStation() {}, setPaused() {}, setFrozen() {}, project: () => null, heroAnchors: [], limbAnchors: [] }; }
+  catch { return { setStation() {}, setPaused() {}, setFrozen() {}, setOrbit() {}, project: () => null, heroAnchors: [], limbAnchors: [] }; }
   const small = innerWidth < 800;
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
@@ -286,13 +286,14 @@ export function initScene(canvas) {
     [add(roots[1].getPointAt(0.45)), add(limbs1[1].getPointAt(0.5)), add(limbs1[0].getPointAt(0.9))],
     [0, 2, 4].map((k) => add(roots[k].getPointAt(0.42))),
     [0.25, 0.45, 0.65].map((t) => add(trunk.getPointAt(t))),
-    [0, 1, 2].map((k) => add(limbs1[k].getPointAt(0.45))),
+    [0, 1, 2].flatMap((k) => [0.15, 0.32].map((t) => add(limbs1[k].getPointAt(t + k * 0.04)))).flatMap((a, i) => [a, add(trunk.getPointAt(0.55 + i * 0.07).add(V(Math.cos(i * 2.4), 0, Math.sin(i * 2.4)).multiplyScalar(0.95)))]),
     [0.5, 0.8, 0.95].map((t) => add(terminals[Math.floor(terminals.length / 2)].getPointAt(t))),
     [add(crown.clone().add(V(-1.5, -1, 0))), add(crown.clone()), add(crown.clone().add(V(1.5, -1.5, 0)))],
     [add(crown.clone().add(V(-4, 0, 0))), add(crown.clone()), add(crown.clone().add(V(4, 0, 0)))],
   ];
 
-  let target = 0, cur = 0, mx = 0, my = 0, W = 1, H = 1;
+  const smoother = (x) => x * x * x * (x * (6 * x - 15) + 10);
+  let orb = null, orbit = 0, target = 0, cur = 0, mx = 0, my = 0, W = 1, H = 1;
   const resize = () => {
     W = innerWidth; H = innerHeight;
     renderer.setSize(W, H, false);
@@ -328,15 +329,37 @@ export function initScene(canvas) {
       const w = (Math.PI * 2) / 0.45;
       for (let n = 0, h = dt / 3; n < 3; n++) { vel += (w * w * (target - cur) - 2 * w * vel) * h; cur += vel * h; }
     }
-    const u = THREE.MathUtils.clamp(cur / (stations.length - 1), 0, 1);
+    // section Projets : la caméra se pose sur les branches et fait un tour complet de l'arbre.
+    // Tout découle de `cur` (le même ressort que le reste), donc pas d'à-coups entre pose et rotation.
+    let uc = cur, wC = 0; orbit = 0;
+    if (orb) {
+      const f = cur - orb.at, af = Math.abs(f);
+      if (af < 1) {
+        const k = Math.max(0, (af - orb.hold) / (1 - orb.hold));
+        uc = orb.at + Math.sign(f) * smoother(k);
+        // la rotation déborde un peu du palier : elle commence pendant l'arrivée et finit pendant le départ
+        const span = orb.hold + 0.3;
+        orbit = Math.PI * 2 * smoother(THREE.MathUtils.clamp((f + span) / (2 * span), 0, 1));
+        wC = 1 - THREE.MathUtils.smoothstep(af, orb.hold, orb.hold + 0.4);
+      }
+    }
+    const u = THREE.MathUtils.clamp(uc / (stations.length - 1), 0, 1);
     posCurve.getPoint(u, camPos); lookCurve.getPoint(u, camLook);
     const narrow = cam.aspect < 1;
     if (narrow) camPos.sub(camLook).multiplyScalar(1.6).add(camLook);
+    // tour complet autour de l'arbre : la caméra tourne autour de l'axe vertical du point regardé
+    if (orbit > 1e-3) {
+      const dx = camPos.x - camLook.x, dz = camPos.z - camLook.z, c = Math.cos(orbit), s = Math.sin(orbit);
+      camPos.x = camLook.x + dx * c - dz * s; camPos.z = camLook.z + dx * s + dz * c;
+    }
+    // pendant le tour, la caméra recule un peu pour que le tronc se lise en entier
+    if (wC > 0) camPos.sub(camLook).multiplyScalar(1 + 0.7 * wC).add(camLook);
     cam.position.set(camPos.x + mx * 0.6, camPos.y - my * 0.4, camPos.z);
     cam.lookAt(camLook);
     // hors du héros, le sujet glisse en haut à droite, là où le texte laisse de la place
-    const i = Math.min(stations.length - 2, Math.floor(cur)), f = THREE.MathUtils.clamp(cur - i, 0, 1);
-    const off = THREE.MathUtils.lerp(stations[i].off, stations[i + 1].off, f) * (narrow ? 0 : 1);
+    const i = Math.min(stations.length - 2, Math.floor(uc)), f = THREE.MathUtils.clamp(uc - i, 0, 1);
+    // pendant le tour, l'arbre revient au centre de l'écran
+    const off = THREE.MathUtils.lerp(stations[i].off, stations[i + 1].off, f) * (narrow ? 0 : 1) * (1 - wC);
     if (off !== lastOff) { lastOff = off; cam.setViewOffset(W, H, -W * 0.2 * off, H * 0.06 * off, W, H); }
     // derrière le texte des sections, le dessin recule ; il revient pour la vue du ciel
     uni.uFade.value = 1 - 0.62 * THREE.MathUtils.smoothstep(cur, 0.2, 0.8) + 0.3 * THREE.MathUtils.smoothstep(cur, 5.3, 6);
@@ -347,6 +370,7 @@ export function initScene(canvas) {
   return {
     setStation: (v) => { target = v; },
     setPaused: (v) => { paused = v; },
+    setOrbit: (o) => { orb = o; },
     setFrozen: (v) => { frozen = v; },
     isFrozen: () => frozen,
     heroAnchors: stationAnchors[0],
@@ -354,6 +378,8 @@ export function initScene(canvas) {
     project(k) {
       tmp.copy(anchors[k]);
       if (tmp.y > uni.uGrow.value) return null;
+      // pendant le tour, un point derrière le tronc (vu de la caméra) est masqué
+      if (orbit > 0.05 && orbit < Math.PI * 2 - 0.05 && tmp.x * cam.position.x + tmp.z * cam.position.z < 0) return null;
       tmp.project(cam);
       if (tmp.z > 1) return null;
       return { x: (tmp.x + 1) / 2 * W, y: (1 - tmp.y) / 2 * H };

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marceau LE SECH — Portfolio BUT Informatique</title>
+<title>Marceau LE SECH | Portfolio BUT Informatique</title>
 <meta name="description" content="Portfolio BUT3 Informatique, parcours A Réalisation d'applications : six compétences, preuves et projets.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
@@ -31,40 +31,42 @@
     <div class="stamp"><h1>Marceau <br>LE SECH</h1></div>
     <p class="serif" id="baseline"></p>
     <p class="meta" id="situation"></p>
-    <p class="hint" aria-hidden="true">Les « + » posés sur l’arbre ouvrent les sections</p>
+    <p class="hint" aria-hidden="true">Chaque « + » sur l’arbre ouvre une preuve</p>
   </section>
 
   <section class="scene" id="communes" data-title="Communes">
-    <header class="head"><span class="tag">Les racines · C3 · C4 · C5</span><h2>Les compétences communes</h2><p class="serif">Administrer, gérer, conduire</p></header>
+    <header class="head"><span class="tag">Les racines · C3 · C4 · C5</span><h2>Les fondations</h2><p class="serif">Administrer, gérer, conduire : ce qui fait tenir un projet</p></header>
     <div class="cards" id="list-communes"></div>
   </section>
 
   <section class="scene" id="parcours" data-title="Parcours A">
-    <header class="head"><span class="tag">Le tronc · C1 · C2 · C6</span><h2>Les compétences du parcours A</h2><p class="serif">Réaliser, optimiser, collaborer</p></header>
+    <header class="head"><span class="tag">Le tronc · C1 · C2 · C6</span><h2>Ma spécialité, le parcours A</h2><p class="serif">Réaliser, optimiser, collaborer : là où je fais la différence</p></header>
     <div class="cards" id="list-parcours"></div>
   </section>
 
   <section class="scene" id="projets" data-title="Projets">
-    <header class="head"><span class="tag">Les branches · preuves</span><h2>Projets et traces</h2>
+    <header class="head"><span class="tag">Les branches · preuves</span><h2>Des projets, pas des promesses</h2>
       <div class="filters" id="filters"></div></header>
+    <p class="proj-hint serif">Touchez un point de l’arbre pour ouvrir un projet</p>
+    <button class="list-toggle" id="list-toggle" type="button" aria-expanded="false" aria-controls="projets-grid">Voir la liste</button>
     <div class="grid" id="projets-grid"></div>
   </section>
 
   <section class="scene" id="bilan" data-title="Bilan">
-    <header class="head"><span class="tag">Le feuillage · bilan</span><h2>Mon BUT en bref</h2><p class="serif" id="bilan-chapo"></p></header>
+    <header class="head"><span class="tag">Le feuillage · bilan</span><h2>Trois ans, un bilan</h2><p class="serif" id="bilan-chapo"></p></header>
     <div class="bars" id="bars"></div>
     <div class="prose" id="bilan-corps"></div>
   </section>
 
   <section class="scene" id="apres" data-title="Après le BUT">
-    <header class="head"><span class="tag">La cime · après le BUT</span><h2>Après le BUT</h2><p class="serif" id="post-chapo"></p></header>
+    <header class="head"><span class="tag">La cime · après le BUT</span><h2>Et ensuite ?</h2><p class="serif" id="post-chapo"></p></header>
     <div class="cards" id="voies"></div>
     <div class="prose" id="adequation"></div>
   </section>
 
   <section class="scene" id="contact" data-title="Contact">
-    <header class="head"><span class="tag">Vu d’en haut · contact</span><h2>Parlons-en</h2>
-      <p class="serif">Une question, un stage, une alternance : écrivez-moi, je réponds sous quelques jours</p></header>
+    <header class="head"><span class="tag">Vu d’en haut · contact</span><h2>Travaillons ensemble</h2>
+      <p class="serif">Un projet, un stage, une alternance ? Écrivez-moi, je réponds vite</p></header>
     <form class="contact-form" id="contact-form" action="https://formspree.io/f/xeoggnzr" method="POST" novalidate>
       <p class="form-note field-wide">Tous les champs sont obligatoires</p>
       <div class="field"><label for="cf-name">Nom</label><input id="cf-name" name="name" autocomplete="name" required aria-describedby="cf-name-err"><p class="field-err" id="cf-name-err"></p></div>
@@ -72,7 +74,7 @@
       <div class="field field-wide"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" rows="5" required aria-describedby="cf-msg-err"></textarea><p class="field-err" id="cf-msg-err"></p></div>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
       <div class="form-foot field-wide">
-        <button type="submit" class="send">Envoyer le message</button>
+        <button type="submit" class="send">Envoyer</button>
         <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
       </div>
     </form>
@@ -82,7 +84,7 @@
 
 <footer class="foot">© 2026 Marceau LE SECH · Portfolio BUT Informatique · IUT de Lannion</footer>
 
-<dialog id="modal"><button class="close" aria-label="Fermer">×</button><div id="modal-body"></div></dialog>
+<dialog id="modal" data-lenis-prevent><button class="close" aria-label="Fermer">×</button><div id="modal-body"></div></dialog>
 <noscript>
   <p class="nojs-note">La scène 3D, les fenêtres et le filtre demandent JavaScript. Le contenu complet est affiché ci-dessous et dans les sections de la page.</p>
   <!--NOJS-->

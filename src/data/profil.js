@@ -10,22 +10,22 @@ export const profil = {
   wordmark: 'LE SECH',
   initials: 'LS',
   titre:
-    'Réalisation d’applications : conception, développement, validation',
+    'Je crée, programme et teste des applications',
   parcours: 'Parcours A',
   annee: '3ᵉ année',
-  etablissement: 'IUT de Lannion — Université de Rennes',
+  etablissement: 'IUT de Lannion, Université de Rennes',
   parcoursLabel: 'BUT Informatique',
-  statut: 'Alternant·e en 3ᵉ année',
+  statut: 'Alternant en 3ᵉ année',
   email: 'marceaulesech@gmail.com',
   baseline:
-    'Développer des applications qui tiennent la route — de l’architecture au déploiement',
+    'Je crée des applications fiables, de l’idée jusqu’à leur mise en ligne',
   situation: {
     chapo:
-      'Je suis alternant·e en 3ᵉ année de BUT Informatique à l’IUT de Lannion, sur le parcours Réalisation d’applications.',
+      'Alternant en 3ᵉ année de BUT Informatique à l’IUT de Lannion, je passe mes semaines entre salle de cours et vrai code en production.',
     corps: [
-      '⟨À REMPLIR⟩ — **l’entreprise** : nom, secteur, taille, ce qu’elle fait. Une phrase suffit.',
-      '⟨À REMPLIR⟩ — **l’organisation de l’alternance** : à quelle fréquence es-tu en entreprise, avec quelle équipe, sur quel produit. C’est le point que le jury cherche : comment le BUT s’articule avec ton travail réel.',
-      '⟨À REMPLIR⟩ — **ce que l’alternance a changé** par rapport à la formation initiale : un exemple concret, pas une intention.',
+      '⟨À REMPLIR : **l’entreprise**, son nom, son secteur, sa taille, ce qu’elle fait. Une phrase suffit.⟩',
+      '⟨À REMPLIR : **le rythme de l’alternance**, la fréquence en entreprise, l’équipe, le produit. C’est ce que le jury veut voir : comment le BUT s’articule avec le travail réel.⟩',
+      '⟨À REMPLIR : **ce que l’alternance a changé** par rapport à la formation initiale, avec un exemple concret.⟩',
     ],
     entreprise: '⟨À REMPLIR⟩',
     frequence: '⟨À REMPLIR⟩',

@@ -1,4 +1,4 @@
-# Portfolio BUT Informatique — Marceau LE SECH
+# Portfolio BUT Informatique | Marceau LE SECH
 
 Portfolio de 3ᵉ année du BUT Informatique (IUT de Lannion, parcours A « Réalisation d'applications »), construit pour l'oral de janvier 2027.
 
@@ -12,7 +12,7 @@ Le site est un arbre gravé à l'encre verte, posé seul sur une colline. On le 
 | Les branches | Projets et traces, fiches au format STAR (Situation, Tâche, Action, Résultat) | preuves |
 | Le feuillage | Bilan personnel du BUT | bilan |
 | La cime | Après le BUT, adéquation avec la formation | projet post-BUT |
-| Vue du ciel | Contact : formulaire, GitHub, LinkedIn, CV | — |
+| Vue du ciel | Contact : formulaire, GitHub, LinkedIn, CV | contact |
 
 ## Fonctionnalités
 

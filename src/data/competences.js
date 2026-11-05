@@ -1,5 +1,5 @@
 /**
- * Les six compétences du BUT Informatique — libellés, définitions et
+ * Les six compétences du BUT Informatique : libellés, définitions et
  * apprentissages critiques repris du programme national (niveau 3).
  *
  * Source officielle : annexe du BUT Informatique, IUT de Lannion.
@@ -23,7 +23,7 @@ export const competences = [
     id: 'c3',
     /** Un titre court, en question. L'intitulé officiel du niveau 3
      *  reste affiché séparément : il est long, il ne fait pas un titre. */
-    titre: "Qu'est-ce qui doit tenir debout, et tout seul ?",
+    titre: 'Des systèmes qui tiennent debout tout seuls',
     num: '03',
     cam: 1,
     /** Le mot-clé imposé par la consigne. */
@@ -35,7 +35,7 @@ export const competences = [
       'Faire évoluer et maintenir un système informatique communicant en conditions opérationnelles',
     /** Définition de la compétence, valable tous niveaux. */
     definition:
-      'Installer, configurer, mettre à disposition, maintenir en conditions opérationnelles des infrastructures, des services et des réseaux, et optimiser le système informatique d’une organisation.',
+      'Installer, régler et surveiller les serveurs, les réseaux et les services d’une organisation, pour que tout fonctionne et reste sûr au quotidien.',
     acs: [
       {
         code: 'AC33.01',
@@ -62,18 +62,18 @@ export const competences = [
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
-      note: '⟨À REMPLIR⟩ — en what niveau es-tu vraiment sur les 4 AC ? Cite une réalisation précise.⟩',
+      note: '⟨À REMPLIR : mon vrai niveau sur les 4 AC, avec une réalisation précise⟩',
     },
     /** Ce que cette compétence m'a appris, hors preuves. */
     apports:
-      '⟨À REMPLIR⟩ — une phrase. Qu’est-ce que l’infrastructure t’a appris qu’aucune cours ne t’aurait appris ?⟩',
+      '⟨À REMPLIR : ce que l’infrastructure m’a appris qu’aucun cours ne m’aurait appris⟩',
   },
 
   {
     id: 'c4',
     /** Un titre court, en question. L'intitulé officiel du niveau 3
      *  reste affiché séparément : il est long, il ne fait pas un titre. */
-    titre: 'Quelle donnée a permis quelle décision ?',
+    titre: 'Des données qui font prendre les bonnes décisions',
     num: '04',
     cam: 2,
     motCle: 'Gérer',
@@ -82,7 +82,7 @@ export const competences = [
     level3:
       'Administrer une base de données, concevoir et réaliser des systèmes d’informations décisionnels',
     definition:
-      'Concevoir, gérer, administrer et exploiter les données de l’entreprise et mettre à disposition toutes les informations pour un bon pilotage de l’entreprise.',
+      'Organiser, stocker et exploiter les données d’une entreprise, pour aider ses responsables à prendre de bonnes décisions.',
     acs: [
       {
         code: 'AC34.01',
@@ -103,17 +103,17 @@ export const competences = [
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
-      note: '⟨À REMPLIR⟩ — quelle décision métier tes données ont-elles permise de prendre ?⟩',
+      note: '⟨À REMPLIR : la décision métier que mes données ont permis de prendre⟩',
     },
     apports:
-      '⟨À REMPLIR⟩ — une phrase. Le lien entre la donnée et une décision concrète.⟩',
+      '⟨À REMPLIR : le lien entre la donnée et une décision concrète⟩',
   },
 
   {
     id: 'c5',
     /** Un titre court, en question. L'intitulé officiel du niveau 3
      *  reste affiché séparément : il est long, il ne fait pas un titre. */
-    titre: "Qu'ai-je décidé quand le planning a bougé ?",
+    titre: 'Garder le cap quand le planning bouge',
     num: '05',
     cam: 3,
     motCle: 'Conduire',
@@ -121,7 +121,7 @@ export const competences = [
     parcours: 'commune',
     level3: 'Participer à la conception et à la mise en œuvre d’un projet système d’information',
     definition:
-      'Satisfaire les besoins des utilisateurs au regard de la chaîne de valeur du client, organiser et piloter un projet informatique avec des méthodes classiques ou agiles.',
+      'Comprendre ce dont les utilisateurs ont besoin, puis organiser et piloter un projet informatique du début à la fin.',
     acs: [
       {
         code: 'AC35.01',
@@ -138,17 +138,17 @@ export const competences = [
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
-      note: '⟨À REMPLIR⟩ — quelle décision as-tu prise seul·e en alternance, avec ses conséquences ?⟩',
+      note: '⟨À REMPLIR : une décision que j’ai prise en alternance, avec ses conséquences⟩',
     },
     apports:
-      '⟨À REMPLIR⟩ — une phrase. Pilotage : ce que tu fais quand le planning ou le périmètre bouge.⟩',
+      '⟨À REMPLIR : ce que je fais quand le planning ou le périmètre bouge⟩',
   },
 
   {
     id: 'c1',
     /** Un titre court, en question. L'intitulé officiel du niveau 3
      *  reste affiché séparément : il est long, il ne fait pas un titre. */
-    titre: "Qu'ai-je livré, et qui l'utilise aujourd'hui ?",
+    titre: 'Du code livré, utilisé, maintenu',
     num: '01',
     cam: 4,
     motCle: 'Réaliser',
@@ -156,7 +156,7 @@ export const competences = [
     parcours: 'parcours-a',
     level3: 'Adapter des applications sur un ensemble de supports (embarqué, web, mobile, IoT…)',
     definition:
-      'Développer — c’est-à-dire concevoir, coder, tester et intégrer — une solution informatique pour un client.',
+      'Créer une solution informatique pour un client : l’imaginer, la programmer, la tester et la mettre en service.',
     acs: [
       { code: 'AC31.01', texte: 'Choisir et implémenter les architectures adaptées' },
       { code: 'AC31.02', texte: 'Faire évoluer une application existante' },
@@ -170,17 +170,17 @@ export const competences = [
     acr: {
       level: 'acquis',
       label: 'Acquis',
-      note: '⟨À REMPLIR⟩ — quelle application en entreprise es-tu fier·e delivrer, et pourquoi elle est propre ?⟩',
+      note: '⟨À REMPLIR : l’application en entreprise dont je suis le plus fier, et pourquoi elle est propre⟩',
     },
     apports:
-      '⟨À REMPLIR⟩ — une phrase. Ce que tu fais différemment depuis le début du BUT.⟩',
+      '⟨À REMPLIR : ce que je fais autrement depuis le début du BUT⟩',
   },
 
   {
     id: 'c2',
     /** Un titre court, en question. L'intitulé officiel du niveau 3
      *  reste affiché séparément : il est long, il ne fait pas un titre. */
-    titre: 'Combien ont gagné mes optimisations ?',
+    titre: 'Des gains mesurés, pas supposés',
     num: '02',
     cam: 5,
     motCle: 'Optimiser',
@@ -188,7 +188,7 @@ export const competences = [
     parcours: 'parcours-a',
     level3: 'Analyser et optimiser des applications',
     definition:
-      'Proposer des applications informatiques optimisées en fonction de critères spécifiques : temps d’exécution, précision, consommation de ressources…',
+      'Rendre une application plus rapide, plus précise et plus économe, en mesurant ce qu’on gagne vraiment.',
     acs: [
       {
         code: 'AC32.01',
@@ -205,17 +205,17 @@ export const competences = [
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
-      note: '⟨À REMPLIR⟩ — quelle optimisation as-tu **mesurée** ? Chiffre avant / après, sinon ce n’est pas démontré.⟩',
+      note: '⟨À REMPLIR : une optimisation **mesurée**, avec le chiffre avant / après⟩',
     },
     apports:
-      '⟨À REMPLIR⟩ — une phrase. Mesurer avant d’optimiser : ce que ça change dans ta façon de travailler.⟩',
+      '⟨À REMPLIR : mesurer avant d’optimiser, ce que ça change dans ma façon de travailler⟩',
   },
 
   {
     id: 'c6',
     /** Un titre court, en question. L'intitulé officiel du niveau 3
      *  reste affiché séparément : il est long, il ne fait pas un titre. */
-    titre: "Comment ai-je fait avancer l'équipe ?",
+    titre: 'Faire avancer l’équipe, pas seulement le code',
     num: '06',
     cam: 6,
     motCle: 'Collaborer',
@@ -223,7 +223,7 @@ export const competences = [
     parcours: 'parcours-a',
     level3: 'Manager une équipe informatique',
     definition:
-      'Acquérir, développer et exploiter les aptitudes nécessaires pour travailler efficacement dans une équipe informatique.',
+      'Savoir travailler efficacement en équipe : s’organiser, partager ce qu’on sait, accompagner le changement.',
     acs: [
       {
         code: 'AC36.01',
@@ -244,10 +244,10 @@ export const competences = [
     acr: {
       level: 'encours',
       label: 'En cours d’acquisition',
-      note: '⟨À REMPLIR⟩ — un désaccord avec un·e collègue et comment tu l’as résolu. Un exemple, pas une généralité.⟩',
+      note: '⟨À REMPLIR : un désaccord avec un collègue et comment je l’ai résolu. Un exemple, pas une généralité⟩',
     },
     apports:
-      '⟨À REMPLIR⟩ — une phrase. Ce que tu fais différemment dans une équipe depuis ton passage en entreprise.⟩',
+      '⟨À REMPLIR : ce que je fais autrement en équipe depuis mon passage en entreprise⟩',
   },
 ];
 

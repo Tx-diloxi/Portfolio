@@ -36,7 +36,7 @@ Reste ouvert : un **test avec un lecteur d'écran réel** (NVDA, VoiceOver) et l
 | Critère | État | Constat |
 |---|---|---|
 | Langue de la page | ✅ | `lang="fr"` |
-| Titre de page | ✅ | « Marceau LE SECH — Portfolio BUT Informatique » |
+| Titre de page | ✅ | « Marceau LE SECH | Portfolio BUT Informatique » |
 | Hiérarchie des titres | ✅ | un `h1`, des `h2` par section, des `h3` par carte, sans saut de niveau |
 | Landmarks | ✅ | un en-tête de page, un `main`, deux `nav` nommés (« Sections », « Étapes »), un pied de page, et chaque section est nommée par son titre (`aria-labelledby`) |
 | Nom du `h1` | ✅ | « Marceau LE SECH » : un espace précède le saut de ligne |
@@ -147,7 +147,7 @@ Le site est lu comme un jury pendant un oral de 5 minutes.
 - ⚠️ **Contenu à finir.** 65 passages `⟨À REMPLIR⟩` sont encore visibles, y compris dans des titres de cartes : un lecteur d'écran les lit tels quels, et le jury les verrait. C'est le premier point à régler avant l'oral.
 - ✅ **Noms des carrés de navigation.** Le libellé (« Accueil », « Projets »…) s'affiche au survol et au focus.
 - ✅ **Liens externes.** GitHub, LinkedIn et les liens de projets annoncent « s'ouvre dans un nouvel onglet » (texte réservé aux lecteurs d'écran). Le CV indique « PDF, téléchargement ». Le lien Email ne s'ouvre plus dans un nouvel onglet.
-- ⚠️ **Statut « Alternant·e ».** À confirmer dans `profil.js` : l'écriture épicène avec point médian est mal lue par certains lecteurs d'écran.
+- ✅ **Statut « Alternant ».** Corrigé, plus d’écriture épicène dans le texte.
 - ✅ **Découverte des « + ».** Une phrase dans le héros les explique (« Les « + » posés sur l'arbre ouvrent les sections »), et à chaque arrivée sur une étape leurs libellés s'affichent 2,6 secondes avant de s'effacer. Sur mobile, ils ne sont visibles que dans le héros : les cartes et la barre d'étapes prennent le relais.
 
 ## 10. Plan de correction
