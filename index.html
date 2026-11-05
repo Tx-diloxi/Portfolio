@@ -7,6 +7,7 @@
 <meta name="description" content="Portfolio BUT3 Informatique, parcours A Réalisation d'applications : six compétences, preuves et projets.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<noscript><style>.freeze,.hud,.hint,#scene{display:none!important}</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
@@ -23,11 +24,14 @@
   <a class="scroll-btn" href="#communes" aria-label="Défiler vers les compétences">Scroll</a>
 </aside>
 
+<button class="freeze" id="freeze" type="button" aria-pressed="false">Figer l’animation</button>
+
 <main id="main" tabindex="-1">
   <section class="scene hero" id="accueil" data-title="Accueil">
     <div class="stamp"><h1>Marceau <br>LE SECH</h1></div>
     <p class="serif" id="baseline"></p>
     <p class="meta" id="situation"></p>
+    <p class="hint" aria-hidden="true">Les « + » posés sur l’arbre ouvrent les sections</p>
   </section>
 
   <section class="scene" id="communes" data-title="Communes">
@@ -76,8 +80,13 @@
   </section>
 </main>
 
+<footer class="foot">© 2026 Marceau LE SECH · Portfolio BUT Informatique · IUT de Lannion</footer>
+
 <dialog id="modal"><button class="close" aria-label="Fermer">×</button><div id="modal-body"></div></dialog>
-<noscript><style>.scene{opacity:1!important}</style><p style="padding:2rem">Ce portfolio utilise JavaScript pour afficher son contenu.</p></noscript>
+<noscript>
+  <p class="nojs-note">La scène 3D, les fenêtres et le filtre demandent JavaScript. Le contenu complet est affiché ci-dessous et dans les sections de la page.</p>
+  <!--NOJS-->
+</noscript>
 <script type="module" src="/src/main.js"></script>
 </body>
 </html>

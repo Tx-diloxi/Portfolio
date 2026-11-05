@@ -1,7 +1,7 @@
 # Analyse d'accessibilité et de parcours utilisateur
 
 Date de l'analyse : 5 novembre 2026 · Version analysée : site en développement (`npm run dev`), Chrome intégré.
-Mise à jour le même jour : les points 1 à 6 du plan de correction (section 10) sont corrigés et revérifiés.
+Mises à jour le même jour : tous les points du plan de correction (section 10) qui dépendent du code sont corrigés et revérifiés.
 
 ## Méthode et référentiels
 
@@ -25,7 +25,11 @@ Le site a de bonnes bases (langue, titres, contrastes du texte, focus visible, m
 5. ✅ **Modales** nommées par leur titre (`aria-labelledby`).
 6. ✅ **Étape active annoncée** (`aria-current`) et titre principal avec un espace avant le saut de ligne.
 
-Reste ouvert : un test avec un lecteur d'écran réel, le bouton pour figer l'animation, le nombre de `⟨À REMPLIR⟩` encore visibles et les points marqués ⚠️ ci-dessous.
+Ont été ajoutés ensuite : le bouton **« Figer l'animation »**, le titre qui passe à la ligne avec l'espacement de texte forcé, l'indication « s'ouvre dans un nouvel onglet » sur les liens externes, des noms pour les sections, un pied de page et des libellés visibles sur les carrés de navigation.
+
+Dernière série de corrections : contenu lisible **sans JavaScript**, focus jamais masqué par la barre d'étapes mobile, texte secondaire plus foncé sur le dessin de l'arbre, et meilleure découverte des « + ».
+
+Reste ouvert : un **test avec un lecteur d'écran réel** (NVDA, VoiceOver) et le contenu **`⟨À REMPLIR⟩`**, qui dépend de toi.
 
 ## 1. Structure et sémantique
 
@@ -34,12 +38,12 @@ Reste ouvert : un test avec un lecteur d'écran réel, le bouton pour figer l'an
 | Langue de la page | ✅ | `lang="fr"` |
 | Titre de page | ✅ | « Marceau LE SECH — Portfolio BUT Informatique » |
 | Hiérarchie des titres | ✅ | un `h1`, des `h2` par section, des `h3` par carte, sans saut de niveau |
-| Landmarks | ⚠️ | un `main`, deux `nav` nommés (« Sections », « Étapes »). Pas de `header`/`footer` de page, et les sections n'ont pas de nom (`aria-labelledby`) |
+| Landmarks | ✅ | un en-tête de page, un `main`, deux `nav` nommés (« Sections », « Étapes »), un pied de page, et chaque section est nommée par son titre (`aria-labelledby`) |
 | Nom du `h1` | ✅ | « Marceau LE SECH » : un espace précède le saut de ligne |
 | Images | ✅ | 0 image sans `alt` ; la scène 3D est `aria-hidden` |
 | Boutons et liens sans nom | ✅ | aucun (carrés de navigation nommés par `aria-label`) |
 | État courant de la navigation | ✅ | l'étape active porte `aria-current="true"` (carrés et barre d'étapes) |
-| Contenu sans JavaScript | ⚠️ | les cartes sont générées en JS ; un `<noscript>` prévient mais le contenu manque |
+| Contenu sans JavaScript | ✅ | le contenu est écrit dans la page au build (plugin Vite + `src/render.js`) : cartes, barres de niveau, bilan, liens, et les 18 fiches détaillées. Sans JS, chaque carte est un lien vers sa fiche en bas de page (testé : 18 cartes, 18 fiches). Les boutons qui n'ont de sens qu'avec JS (animation, navigation latérale) sont masqués |
 
 ## 2. Clavier et focus
 
@@ -50,7 +54,7 @@ Reste ouvert : un test avec un lecteur d'écran réel, le bouton pour figer l'an
 | Lien d'évitement (2.4.1) | ✅ | « Aller au contenu » est le premier élément focusable, visible au focus ; il déplace le focus sur `<main>` (testé au clavier) |
 | Éléments `aria-hidden` focusables | ✅ | le lien « Scroll » n'est plus dans un conteneur masqué ; aucun élément `aria-hidden` ne contient d'élément focusable |
 | Éléments invisibles focusables | ✅ | les « + » sont en `tabindex="-1"` et `aria-hidden` tant qu'ils ne sont pas à l'écran (leur contenu existe aussi dans les cartes et les liens) |
-| Focus non masqué (2.4.11, WCAG 2.2) | ⚠️ | la barre d'étapes fixe en bas du mobile peut recouvrir l'élément focalisé : ajouter `scroll-padding-bottom` |
+| Focus non masqué (2.4.11, WCAG 2.2) | ✅ | `scroll-padding` bas et haut : sur mobile, les éléments focalisés (champs, boutons, cartes, liens) restent au-dessus de la barre d'étapes (testé sur 5 éléments) ; le bouton « Figer l'animation » est placé en haut à droite pour ne rien recouvrir |
 | Défilement lissé | ✅ | Lenis lisse la molette. Le clavier, les ancres et la tabulation gardent le défilement natif |
 
 ## 3. Fenêtres modales (dialogues)
@@ -91,7 +95,7 @@ Mesures faites avec les couleurs réelles (papier `#efeeec`, encre `#2b2b2b`).
 | Glyphe « + » vert foncé sur blanc | 5,2:1 | 3:1 | ✅ |
 | Barre de niveau (vert foncé sur sa piste) | 3,3:1 | 3:1 | ✅ (corrigé, était 1,3:1) |
 | Texte encre sur trait vert de l'arbre | 7,5:1 | 4,5:1 | ✅ |
-| Texte secondaire sur trait vert profond | 4,1:1 | 4,5:1 | ⚠️ cas limite |
+| Texte secondaire sur les contours des troncs | 5,0:1 | 4,5:1 | ✅ (corrigé, était 4,1:1 : texte à 84 % d'opacité et contours éclaircis) |
 
 Notes :
 - Le texte se pose sur le dessin de l'arbre. Le dessin s'efface de 62 % derrière le texte des sections, ce qui limite le cas limite à de fins traits.
@@ -113,7 +117,7 @@ Notes :
 | Cibles d'au moins 24 px (2.5.8, WCAG 2.2 AA) | ✅ | carrés de navigation 12 px visibles mais 44 px de zone cliquable ; « + » 32 px (+ marge) ; filtres 32 px ; boutons 50 px |
 | Confort tactile (44 px) | ✅ | les filtres passent à 44 px sur écran tactile |
 | Reflux à 320 px (1.4.10) | ✅ | pas de défilement horizontal |
-| Espacement du texte (1.4.12) | ⚠️ | avec interligne 1,5, lettres +0,12 em et mots +0,16 em, la page déborde de quelques dizaines de pixels (titre du héros) |
+| Espacement du texte (1.4.12) | ✅ | avec interligne 1,5, lettres +0,12 em et mots +0,16 em, le titre passe à la ligne : plus de défilement horizontal (testé) |
 | Unités | ✅ | polices en `rem`, 16 px de base, interligne 1,6 |
 | Orientation, zoom | ✅ | pas de blocage du zoom ni de l'orientation |
 
@@ -123,7 +127,7 @@ Notes :
 |---|---|---|
 | `prefers-reduced-motion` | ✅ | le vent des feuilles est coupé, l'arbre apparaît d'emblée, la caméra ne vole plus : elle saute d'une étape à l'autre avec un fondu, les entrées ne s'animent plus, le défilement lissé est désactivé |
 | Pas de clignotement | ✅ | aucun flash |
-| Mouvement automatique (2.2.2, A) | ⚠️ | le balancement des feuilles dure plus de 5 secondes sans bouton pour l'arrêter. Il est discret et s'arrête avec la préférence système, mais un bouton « Figer l'animation » rendrait le site pleinement conforme |
+| Mouvement automatique (2.2.2, A) | ✅ | bouton « Figer l'animation » (`aria-pressed`, devient « Reprendre l'animation »), visible en permanence en bas à gauche et au clavier ; le choix est mémorisé, et il démarre figé si la préférence système « réduire les animations » est active |
 | Animations d'interface | ✅ | durées courtes (0,2 à 0,45 s), une seule courbe |
 | Repli sans WebGL | ✅ | le contenu reste lisible et utilisable, seule la scène disparaît |
 | Machines lentes | ✅ | le feuillage s'éclaircit automatiquement, et la 3D se met en pause derrière une fenêtre modale ou dans un onglet masqué |
@@ -141,10 +145,10 @@ Le site est lu comme un jury pendant un oral de 5 minutes.
 
 **Points d'attention**
 - ⚠️ **Contenu à finir.** 65 passages `⟨À REMPLIR⟩` sont encore visibles, y compris dans des titres de cartes : un lecteur d'écran les lit tels quels, et le jury les verrait. C'est le premier point à régler avant l'oral.
-- ⚠️ **Noms des carrés de navigation.** Ils n'ont pas de libellé visible sur ordinateur (nom en infobulle seulement). Un libellé au survol et au focus faciliterait le repérage.
-- ⚠️ **Liens externes.** GitHub, LinkedIn et l'email s'ouvrent dans un nouvel onglet sans le dire. Ajouter « (nouvel onglet) » dans le nom accessible.
+- ✅ **Noms des carrés de navigation.** Le libellé (« Accueil », « Projets »…) s'affiche au survol et au focus.
+- ✅ **Liens externes.** GitHub, LinkedIn et les liens de projets annoncent « s'ouvre dans un nouvel onglet » (texte réservé aux lecteurs d'écran). Le CV indique « PDF, téléchargement ». Le lien Email ne s'ouvre plus dans un nouvel onglet.
 - ⚠️ **Statut « Alternant·e ».** À confirmer dans `profil.js` : l'écriture épicène avec point médian est mal lue par certains lecteurs d'écran.
-- ⚠️ **Découverte des « + ».** Ils n'apparaissent qu'à l'étape voisine ; sur mobile, ils ne sont visibles que dans le héros (les cartes prennent le relais ailleurs).
+- ✅ **Découverte des « + ».** Une phrase dans le héros les explique (« Les « + » posés sur l'arbre ouvrent les sections »), et à chaque arrivée sur une étape leurs libellés s'affichent 2,6 secondes avant de s'effacer. Sur mobile, ils ne sont visibles que dans le héros : les cartes et la barre d'étapes prennent le relais.
 
 ## 10. Plan de correction
 
@@ -156,9 +160,11 @@ Le site est lu comme un jury pendant un oral de 5 minutes.
 | 4 | Barre de niveau : texte, `role="meter"`, couleur plus foncée | ✅ fait |
 | 5 | Nom accessible des modales, `aria-current`, espace dans le `h1` | ✅ fait |
 | 6 | Formulaire : `aria-invalid`, erreur par champ, « obligatoire » visible | ✅ fait |
-| 7 | Bouton « Figer l'animation » (arrête la 3D en mouvement) | à faire (20 min) |
+| 7 | Bouton « Figer l'animation » (arrête la 3D en mouvement) | ✅ fait |
 | 8 | Remplir ou masquer les `⟨À REMPLIR⟩` | à faire, selon le contenu |
 | 9 | Test avec un lecteur d'écran réel (NVDA sur Windows, VoiceOver sur Mac) | à faire (1 h) |
-| 10 | Espacement du texte (1.4.12) : éviter le léger débordement du titre du héros | à faire (10 min) |
+| 10 | Espacement du texte (1.4.12) : éviter le débordement du titre du héros | ✅ fait |
+| 11 | Liens externes annoncés, sections nommées, pied de page, libellés de navigation | ✅ fait |
+| 12 | Contenu sans JavaScript, focus et barre d'étapes mobile, contraste du texte secondaire, découverte des « + » | ✅ fait |
 
-Les points 1 à 6 étaient les défauts bloquants pour viser le niveau **AA de WCAG 2.2**. Ils sont corrigés et vérifiés dans le navigateur (structure, ordre de tabulation, formulaire, modale). Une vraie déclaration de conformité RGAA suppose en plus un test sur lecteur d'écran et une vérification page par page, ce qui dépasse le cadre de cette analyse.
+Les points 1 à 7 étaient les défauts bloquants pour viser le niveau **AA de WCAG 2.2**. Ils sont corrigés et vérifiés dans le navigateur (structure, ordre de tabulation, formulaire, modale, animation). Une vraie déclaration de conformité RGAA suppose en plus un test sur lecteur d'écran et une vérification page par page, ce qui dépasse le cadre de cette analyse.

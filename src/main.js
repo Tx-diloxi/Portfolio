@@ -4,31 +4,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { initScene, reduce } from './scene3d.js';
 import { profil } from './data/profil.js';
-import { competences, parId as compById, COMMUNES, PARCOURS_A } from './data/competences.js';
+import { parId as compById } from './data/competences.js';
 import { projets, parId as projById } from './data/projets.js';
-import { bilan, postBut, progression, NIVEAUX } from './data/bilan.js';
+import { fill, filtersHTML, projectHTML, compHTML, md, esc } from './render.js';
 
 gsap.registerPlugin(ScrollTrigger);
 const $ = (s) => document.querySelector(s);
-const md = (s) => (s || '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const MOBILE = matchMedia('(max-width:700px)');
 
-/* ── Contenu ── */
-$('#baseline').textContent = profil.baseline;
-$('#situation').innerHTML = `${esc(profil.statut)} · ${esc(profil.parcoursLabel)} · ${esc(profil.etablissement)}`;
-
-const compCard = (c) => `<button class="card" data-comp="${c.id}">
-  <div class="num">${c.num}</div><h3>${esc(c.motCle)}</h3><small>${esc(c.titre)}</small></button>`;
-$('#list-communes').innerHTML = COMMUNES.map((id) => compCard(compById[id])).join('');
-$('#list-parcours').innerHTML = PARCOURS_A.map((id) => compCard(compById[id])).join('');
-
-const projCard = (p) => `<button class="card" data-proj="${p.id}" data-comps="${p.competences.join(' ')}">
-  <span class="meta-line">${esc(p.ref)} · ${esc(p.annee)}</span><h3>${esc(p.titre)}</h3><small>${esc(p.resume)}</small>
-  <span class="kws">${p.competences.map((c) => esc(compById[c]?.motCle || c)).join(' · ')}</span></button>`;
-$('#projets-grid').innerHTML = projets.map(projCard).join('');
-$('#filters').innerHTML = ['tous', ...competences.map((c) => c.id)].map((id, i) =>
-  `<button aria-pressed="${i === 0}" data-f="${id}">${id === 'tous' ? 'Tous' : esc(compById[id].motCle)}</button>`).join('');
+/* ── Contenu : déjà écrit dans la page au build ; on le réécrit ici pour obtenir les vrais boutons ── */
+for (const [id, html] of Object.entries(fill(false))) document.getElementById(id).innerHTML = html;
+$('#filters').innerHTML = filtersHTML();
 $('#filters').addEventListener('click', (e) => {
   const b = e.target.closest('button'); if (!b) return;
   document.querySelectorAll('#filters button').forEach((x) => x.setAttribute('aria-pressed', x === b));
@@ -37,20 +23,6 @@ $('#filters').addEventListener('click', (e) => {
   });
   ScrollTrigger.refresh();
 });
-
-$('#bilan-chapo').textContent = bilan.chapo;
-$('#bars').innerHTML = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'].map((id) => {
-  const n = progression[id], niveau = NIVEAUX[n];
-  return `<div class="bar"><span>${esc(compById[id].motCle)}</span>
-    <i role="meter" aria-label="Niveau d’acquisition, ${esc(compById[id].motCle)}" aria-valuemin="0" aria-valuemax="${NIVEAUX.length - 1}" aria-valuenow="${n}" aria-valuetext="${esc(niveau)}"><b data-w="${(n + 1) * 25}"></b></i>
-    <small>${esc(niveau)}</small></div>`;
-}).join('');
-$('#bilan-corps').innerHTML = bilan.corps.map((t) => `<p>${md(esc(t))}</p>`).join('');
-$('#post-chapo').textContent = postBut.chapo;
-$('#voies').innerHTML = postBut.voies.map((v) => `<div class="card"><h3>${esc(v.libelle)}${v.actif ? ' <small class="tag">voie choisie</small>' : ''}</h3><small>${esc(v.detail)}</small></div>`).join('');
-$('#adequation').innerHTML = postBut.adequation.map((a) => `<p><strong>${esc(a.competence || '')}</strong> — ${esc(a.texte || '')}</p>`).join('');
-$('#liens').innerHTML = profil.liens.map((l) => `<a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('') +
-  `<a href="${esc(profil.cv)}" download>CV (PDF)</a>`;
 
 /* ── Modales : naissent de l'élément cliqué, se ferment au geste ── */
 const modal = $('#modal'), body = $('#modal-body');
@@ -105,32 +77,6 @@ function open(html, from) {
   };
   modal.addEventListener('touchend', end); modal.addEventListener('touchcancel', end);
 })();
-const STAR = [['S', 'Situation', 'situation'], ['T', 'Tâche', 'tache'], ['A', 'Action', 'action'], ['R', 'Résultat', 'resultat']];
-function projectHTML(p) {
-  const s = p.star || {};
-  return `<header class="m-head"><span class="tag">${esc(p.ref)}</span>
-      <h3 id="m-title">${esc(p.titre)}</h3><p class="serif">${esc(p.sousTitre || '')}</p>
-      <ul class="m-meta"><li>${esc(p.periode)}</li><li>${esc(p.organisation || '')}</li><li>${esc(p.duree || '')}</li></ul></header>
-    ${(p.media || []).slice(0, 1).map((m) => `<figure class="m-fig"><img src="${esc(m.src)}" alt="${esc(m.alt)}"></figure>`).join('')}
-    <div class="m-star">${STAR.map(([l, k, f]) => `<section ><b>${l}</b><h4>${k}</h4><p>${md(esc(s[f] || ''))}</p></section>`).join('')}</div>
-    <footer class="m-foot">
-      <div>${p.competences.map((c) => `<button class="chip" data-comp="${c}">C${compById[c].num.slice(1)} · ${esc(compById[c].motCle)}</button>`).join('')}
-        ${(p.motsCle || []).map((k) => `<span class="kw">${esc(k)}</span>`).join('')}</div>
-      <div>${(p.liens || []).map((l) => `<a class="btn" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}</div>
-    </footer>`;
-}
-function compHTML(c) {
-  const preuves = (c.projets || []).concat(projets.filter((p) => p.competences.includes(c.id)).map((p) => p.id));
-  const uniq = [...new Set(preuves)].map((id) => projById[id]).filter(Boolean);
-  return `<header class="m-head"><span class="tag">C${c.num.slice(1)} · ${c.parcours === 'commune' ? 'Compétence commune' : 'Parcours A'}</span>
-      <div class="m-big"><span>${c.num}</span><h3 id="m-title">${esc(c.motCle)}</h3></div>
-      <p class="serif">${esc(c.level3)}</p></header>
-    <p class="m-def">${esc(c.definition)}</p>
-    <h4 >Apprentissages critiques</h4>
-    <ol class="m-ac">${c.acs.map((a) => `<li ><code>${a.code}</code><span>${esc(a.texte)}</span></li>`).join('')}</ol>
-    <h4 >Preuves</h4>
-    <div class="m-proofs">${uniq.map((p) => `<button class="chip" data-proj="${p.id}">${esc(p.ref)} — ${esc(p.titre)}</button>`).join('') || '—'}</div>`;
-}
 document.addEventListener('click', (e) => {
   const pc = e.target.closest('[data-proj]'), cc = e.target.closest('[data-comp]');
   if (pc) open(projectHTML(projById[pc.dataset.proj]), pc);
@@ -139,7 +85,8 @@ document.addEventListener('click', (e) => {
 
 /* ── Navigation latérale ── */
 const scenes = [...document.querySelectorAll('.scene')];
-$('#dots').innerHTML = scenes.map((s) => `<a href="#${s.id}" aria-label="${esc(s.dataset.title)}" title="${esc(s.dataset.title)}"></a>`).join('');
+scenes.forEach((el) => { const h = el.querySelector('h1, h2'); h.id ||= `t-${el.id}`; el.setAttribute('aria-labelledby', h.id); });
+$('#dots').innerHTML = scenes.map((s) => `<a href="#${s.id}" aria-label="${esc(s.dataset.title)}" data-label="${esc(s.dataset.title)}"></a>`).join('');
 const dots = [...document.querySelectorAll('#dots a')];
 
 /* ── Scène 3D + scroll ── */
@@ -163,6 +110,8 @@ const stepLinks = [...stepBar.querySelectorAll('a')];
 document.addEventListener('touchstart', () => {}, { passive: true });   // iOS n'applique :active que si un écouteur tactile existe
 
 const counter = $('#cur');
+let peekTimer = 0;
+const peek = () => { const l = document.querySelector('.hots'); if (!l) return; l.classList.add('peek'); clearTimeout(peekTimer); peekTimer = setTimeout(() => l.classList.remove('peek'), 2600); };
 let active = -1;
 function setActive(i) {
   if (i === active) return;
@@ -173,6 +122,7 @@ function setActive(i) {
   const l = stepLinks[i];
   if (stepBar.scrollWidth > stepBar.clientWidth) stepBar.scrollTo({ left: l.offsetLeft - (stepBar.clientWidth - l.offsetWidth) / 2 });
   counter.textContent = i + 1;
+  if (active >= 0) peek();
   active = i;
 }
 scenes.forEach((s, i) => ScrollTrigger.create({ trigger: s, start: 'top 55%', end: 'bottom 55%', onToggle: (self) => self.isActive && setActive(i) }));
@@ -220,7 +170,7 @@ HOTS.forEach((h) => {
   b.className = h.st === 0 ? 'hot hot-hero' : 'hot'; b.type = 'button';
   b.tabIndex = -1; b.setAttribute('aria-hidden', 'true');   // hors tabulation tant que le point n'est pas à l'écran
   b.innerHTML = `<span>${esc(h.label)}</span>`;
-  b.setAttribute('aria-label', h.label);
+  b.setAttribute('aria-label', h.href ? `${h.label} (s’ouvre dans un nouvel onglet)` : h.label);
   if (h.comp) b.dataset.comp = h.comp;
   if (h.proj) b.dataset.proj = h.proj;
   b.addEventListener('click', () => {
@@ -291,3 +241,15 @@ form.addEventListener('submit', async (e) => {
   }
 });
 form.querySelectorAll('[required]').forEach((f) => f.addEventListener('input', () => f.getAttribute('aria-invalid') && setError(f, '')));
+
+/* ── Figer l'animation (WCAG 2.2.2) ── */
+const freeze = $('#freeze');
+const setFrozen = (on) => {
+  three.setFrozen(on);
+  freeze.setAttribute('aria-pressed', String(on));
+  freeze.textContent = on ? 'Reprendre l’animation' : 'Figer l’animation';
+  try { localStorage.setItem('anim-frozen', on ? '1' : '0'); } catch {}
+};
+let saved = null; try { saved = localStorage.getItem('anim-frozen'); } catch {}
+setFrozen(saved === null ? reduce : saved === '1');
+freeze.addEventListener('click', () => setFrozen(freeze.getAttribute('aria-pressed') !== 'true'));

@@ -57,7 +57,7 @@ const taper = (r0, r1, tipClose = true) => (t) =>
 export function initScene(canvas) {
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); }
-  catch { return { setStation() {}, setPaused() {}, project: () => null, heroAnchors: [], limbAnchors: [] }; }
+  catch { return { setStation() {}, setPaused() {}, setFrozen() {}, project: () => null, heroAnchors: [], limbAnchors: [] }; }
   const small = innerWidth < 800;
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
@@ -171,7 +171,7 @@ export function initScene(canvas) {
         float rim = abs(dot(normalize(vN), V));
         float outline = 1.0 - smoothstep(0.14, 0.3, rim);
         float ink = clamp(max(lines, outline), 0.0, 1.0) * uFade;
-        vec3 col = mix(uGreen, uDeep, outline*0.6);
+        vec3 col = mix(uGreen, uDeep, outline*0.15);   // contour assez clair pour qu'un texte lisible passe dessus (>= 4,5:1)
         gl_FragColor = vec4(mix(uPaper, col, ink), 1.0);
       }`,
   });
@@ -303,7 +303,7 @@ export function initScene(canvas) {
   addEventListener('pointermove', (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true });
 
   const clock = new THREE.Clock(), tmp = new THREE.Vector3(), camPos = new THREE.Vector3(), camLook = new THREE.Vector3();
-  let intro = reduce ? 1 : 0, vel = 0, dip = 0, frames = 0, acc = 0, cuts = 0, paused = false, lastOff = NaN;
+  let intro = reduce ? 1 : 0, vel = 0, dip = 0, frames = 0, acc = 0, cuts = 0, paused = false, frozen = reduce, lastOff = NaN;
   renderer.setAnimationLoop(() => {
     const dt = Math.min(clock.getDelta(), 0.05);
     if (paused || document.hidden) return;                     // rien à voir : on ne rend pas
@@ -316,7 +316,7 @@ export function initScene(canvas) {
         frames = 0; acc = 0;
       }
     }
-    if (!reduce) uni.uTime.value += dt;
+    if (!frozen) uni.uTime.value += dt;
     if (intro < 1) { intro = Math.min(1, intro + dt / 3); uni.uGrow.value = intro >= 1 ? 99 : HILL - 1 + (1 - Math.pow(1 - intro, 2.2)) * 36; }
     if (reduce) {
       // mouvement réduit : pas de vol, on passe d'une étape à l'autre avec un fondu
@@ -347,6 +347,8 @@ export function initScene(canvas) {
   return {
     setStation: (v) => { target = v; },
     setPaused: (v) => { paused = v; },
+    setFrozen: (v) => { frozen = v; },
+    isFrozen: () => frozen,
     heroAnchors: stationAnchors[0],
     limbAnchors: stationAnchors.slice(1),
     project(k) {

@@ -2,7 +2,7 @@
    Le vert vit dans l'arbre et dans le "+" des branches ; l'interface reste à l'encre. */
 :root{
   --paper:#efeeec; --paper-2:#f6f5f3;
-  --ink:#2b2b2b; --ink-2:rgba(43,43,43,.72); 
+  --ink:#2b2b2b; --ink-2:rgba(43,43,43,.84); 
   --line:rgba(43,43,43,.12); --line-strong:rgba(43,43,43,.7);
   --green:#6fcf97; --green-ink:#2e7a4d;
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -163,7 +163,13 @@ button.chip:hover{background:var(--ink);color:var(--paper)}
 .tag,.meta,.card small,.card .meta-line,.card .kws,.kw,.m-meta,.hot span,.field label,.form-status,.filters button,button.chip,.bar{letter-spacing:.012em}
 /* préférences */
 @media (prefers-reduced-transparency:reduce){dialog#modal::backdrop{backdrop-filter:none;background:var(--paper)}.stamp,.contact-form,.card{background:var(--paper-2)}}
-@media (prefers-contrast:more){:root{--line:rgba(43,43,43,.4);--line-strong:var(--ink);--ink-2:var(--ink);position:fixed;left:0;right:0;bottom:0;z-index:6;overflow-x:auto;scrollbar-width:none;background:color-mix(in srgb,var(--paper) 92%,transparent);border-top:1px solid var(--line-strong);padding-bottom:env(safe-area-inset-bottom)}
+@media (prefers-contrast:more){:root{--line:rgba(43,43,43,.4);--line-strong:var(--ink);--ink-2:var(--ink)}.card,.contact-form,.field input,.field textarea{border-width:2px}}
+/* barre d'étapes (mobile) */
+.steps{display:none}
+@media (max-width:700px){
+  #dots{display:none}
+  .scene{padding-bottom:96px}
+  .steps{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:6;overflow-x:auto;scrollbar-width:none;background:color-mix(in srgb,var(--paper) 92%,transparent);border-top:1px solid var(--line-strong);padding-bottom:env(safe-area-inset-bottom)}
   .steps::-webkit-scrollbar{display:none}
   .steps a{flex:none;min-height:48px;display:grid;place-items:center;padding:0 16px;font-size:.875rem;font-weight:500;color:var(--ink-2);text-decoration:none;border-bottom:3px solid transparent;transition:color .2s var(--ease),border-color .2s var(--ease)}
   .steps a:active{color:var(--ink)}
@@ -186,3 +192,30 @@ html{scroll-padding-bottom:72px}
 .field-err{min-height:0;font-size:.875rem;font-weight:500;color:#a03d31}
 .field-err:empty{display:none}
 @media (max-width:700px){.bar{grid-template-columns:96px 1fr}.bar small{grid-column:1/-1;margin-top:-8px}}
+
+/* accessibilité (suite) */
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.freeze{position:fixed;left:20px;bottom:24px;z-index:6;font:500 .8125rem/1 Montserrat,system-ui,sans-serif;letter-spacing:.012em;padding:12px 16px;min-height:44px;color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);cursor:pointer;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.freeze:hover{background:var(--ink);color:var(--paper)}
+.freeze[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.freeze[aria-pressed="true"]:hover{background:var(--paper);color:var(--ink)}
+@media (max-width:700px){.freeze{top:12px;right:12px;bottom:auto;left:auto;padding:10px 12px;min-height:40px}html{scroll-padding-top:64px}}
+.foot{position:relative;z-index:2;padding:24px 20px 32px;text-align:center;font-size:.8125rem;color:var(--ink-2)}
+@media (max-width:700px){.foot{padding-bottom:88px}}
+/* libellés des carrés de navigation, au survol et au focus */
+#dots a::before{content:attr(data-label);position:absolute;left:28px;top:50%;translate:0 -50%;white-space:nowrap;font:500 .8125rem/1 Montserrat,system-ui,sans-serif;color:var(--ink);background:var(--paper);border:1px solid var(--line-strong);padding:6px 8px;opacity:0;pointer-events:none;transition:opacity .15s var(--ease)}
+#dots a:hover::before,#dots a:focus-visible::before{opacity:1}
+/* espacement de texte forcé (WCAG 1.4.12) : le titre passe à la ligne au lieu de déborder */
+.stamp{max-width:100%}
+h1,h2,h3,.serif,.meta{overflow-wrap:anywhere}
+
+/* version sans JavaScript */
+a.card{text-decoration:none;color:inherit}
+.nojs-note{padding:24px;max-width:62ch;margin-inline:auto;background:var(--paper-2);border:1.5px solid var(--ink)}
+.nojs{gap:48px}
+.nojs-fiche{max-width:900px;padding:24px;border:1.5px solid var(--line-strong);background:var(--paper-2);scroll-margin-top:24px}
+
+/* découverte des "+" */
+.hint{font-size:.875rem;color:var(--ink-2);margin-top:-8px}
+.hots.peek .hot span{opacity:1}
+.hots.peek .hot:not(.hot-hero) span{opacity:1}

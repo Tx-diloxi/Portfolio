@@ -22,6 +22,7 @@ Le site est un arbre gravé à l'encre verte, posé seul sur une colline. On le 
 - Fiches de compétences et de projets en fenêtres modales, avec filtre des projets par compétence.
 - Formulaire de contact envoyé par [Formspree](https://formspree.io), sans quitter la page.
 - Qualité adaptative : le feuillage s'éclaircit tout seul sur les machines lentes.
+- Lisible sans JavaScript : le contenu est écrit dans la page au build.
 - Accessibilité : voir [ACCESSIBILITE.md](ACCESSIBILITE.md) pour l'analyse détaillée.
 
 ## Lancer le projet
@@ -51,7 +52,9 @@ Les images vont dans `public/files/media/` (format `.webp` conseillé).
 
 ```
 index.html            squelette et sections
-src/main.js           contenu, modales, navigation, formulaire, animations
+src/main.js           modales, navigation, formulaire, animations
+src/render.js         HTML du contenu, partagé par le navigateur et le build
+vite.config.js        plugin qui écrit le contenu dans index.html au build
 src/scene3d.js        scène Three.js : arbre, colline, feuillage, caméra
 src/styles.css        styles
 src/data/             contenu du portfolio
