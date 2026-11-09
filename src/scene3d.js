@@ -31,7 +31,9 @@ float iso(float v, float w){ float d = abs(fract(v)-0.5); return smoothstep(0.5-
 /** Tube effilé ; rFn(t) donne le rayon le long de la courbe. */
 function addTube(bag, curve, rFn, segs, radial) {
   const fr = curve.computeFrenetFrames(segs, false);
-  const L = curve.getLength(), base = bag.pos.length / 3;
+  // nombre de fils du bois autour du membre : proportionnel à son diamètre de départ,
+  // pour que l'espacement des traits soit le même sur le tronc et sur les branches qui en partent
+  const L = curve.getLength(), base = bag.pos.length / 3, nl = THREE.MathUtils.clamp(Math.round(rFn(0.1) * 46), 3, 40);
   const P = new THREE.Vector3(), n = new THREE.Vector3();
   for (let i = 0; i <= segs; i++) {
     const t = i / segs;
@@ -44,6 +46,7 @@ function addTube(bag, curve, rFn, segs, radial) {
       bag.nor.push(n.x, n.y, n.z);
       bag.len.push(t * L);
       bag.ang.push(j / radial);
+      bag.nl.push(nl);
     }
   }
   for (let i = 0; i < segs; i++) for (let j = 0; j < radial; j++) {
@@ -71,7 +74,7 @@ export function initScene(canvas) {
   };
 
   /* ================= l'arbre ================= */
-  const bag = { pos: [], nor: [], len: [], ang: [], idx: [] };
+  const bag = { pos: [], nor: [], len: [], ang: [], nl: [], idx: [] };
   const Q = small ? 0.6 : 1;
   const SEG = [Math.round(220 * Q), Math.round(90 * Q), 40, 22, 12];
   const RAD = [40, 22, 12, 8, 6];
@@ -91,31 +94,32 @@ export function initScene(canvas) {
     const up = new THREE.Vector3().crossVectors(side, dir).normalize();
     const bow = rand(-0.12, 0.22), sway = rand(-0.25, 0.25);
     const node = (f, u, k) => start.clone().addScaledVector(dir, len * f).addScaledVector(up, len * u).addScaledVector(side, len * k)
-      .addScaledVector(UP, len * 0.18 * f * f);               // les rameaux se relèvent vers la lumière
+      .addScaledVector(UP, len * (depth === 1 ? 0.5 : 0.18) * f * f);   // les rameaux se relèvent vers la lumière (les maîtresses branches partent presque à l'horizontale, puis montent)
     const curve = new THREE.CatmullRomCurve3([start.clone(), node(0.33, bow * 0.5, sway * 0.4), node(0.66, bow, sway * 0.8), node(1, bow * 0.8, sway)], false, 'centripetal');
     addTube(bag, curve, taper(r, r * 0.55, depth === maxDepth), SEG[Math.min(depth, 4)], RAD[Math.min(depth, 4)]);
     if (depth === 1) limbs1.push(curve);
     if (depth === maxDepth) { terminals.push(curve); return; }
     const kids = depth <= 1 ? 3 : 2 + (rng() < 0.45 ? 1 : 0);
     for (let i = 0; i < kids; i++) {
-      const t = i === kids - 1 ? 0.97 : rand(0.4, 0.85);
+      const last = i === kids - 1;               // le dernier enfant prolonge le membre : il repart exactement de son bout, avec le même diamètre
+      const t = last ? 1 : rand(0.4, 0.85);
       const p = curve.getPointAt(t), tan = curve.getTangentAt(t);
       const ax = new THREE.Vector3().crossVectors(tan, UP);
       if (ax.lengthSq() < 1e-6) ax.set(1, 0, 0);
       ax.normalize().applyAxisAngle(tan, rng() * Math.PI * 2);
-      const d = tan.clone().applyAxisAngle(ax, i === kids - 1 ? rand(0.15, 0.4) : rand(0.5, 0.95)).addScaledVector(UP, 0.2).normalize();
+      const d = tan.clone().applyAxisAngle(ax, last ? rand(0.05, 0.16) : rand(0.5, 0.95)).addScaledVector(UP, 0.2).normalize();
       const rHere = r + (r * 0.55 - r) * t;
-      grow(p, d, len * rand(0.62, 0.78), rHere * rand(0.62, 0.78), depth + 1, maxDepth);
+      grow(p, d, len * rand(0.62, 0.78), last ? (r * 0.55) * rand(0.97, 1) : rHere * rand(0.62, 0.78), depth + 1, maxDepth);
     }
   }
   const maxD = small ? 3 : 4;
   // charpentières : départs étagés sur le haut du tronc, puis la fourche sommitale
-  [[0.56, 5.3], [0.62, 0.3], [0.68, 3.1], [0.72, 2.4], [0.78, 5.9], [0.8, 4.4], [0.86, 0.9], [0.88, 1.3], [0.93, 3.9], [0.95, 3.5]].forEach(([t, a]) => {
+  [[0.56, 5.3], [0.62, 0.3], [0.68, 3.1], [0.72, 2.4], [0.78, 5.9], [0.8, 4.4], [0.86, 1.95], [0.88, 4.9], [0.93, 3.9], [0.95, 3.5]].forEach(([t, a]) => {
     const p = trunk.getPointAt(t);
-    const d = V(Math.cos(a), rand(0.7, 1.1), Math.sin(a)).normalize();
+    const d = V(Math.cos(a), rand(0.25, 0.5), Math.sin(a)).normalize();   // départ presque horizontal : la branche quitte vite le tronc au lieu de longer sa surface
     grow(p, d, rand(7, 9), trunkR(t) * 0.62, 1, maxD);
   });
-  grow(trunk.getPointAt(0.99), V(0.1, 1, 0.05).normalize(), 7.5, 0.5, 1, maxD);
+  grow(trunk.getPointAt(0.99), V(0.1, 1, 0.05).normalize(), 7.5, trunkR(0.99), 1, maxD);
 
   // racines : contreforts qui épousent la colline puis plongent dans la terre
   const roots = [];
@@ -147,22 +151,23 @@ export function initScene(canvas) {
   g.setAttribute('normal', new THREE.Float32BufferAttribute(bag.nor, 3));
   g.setAttribute('aLen', new THREE.Float32BufferAttribute(bag.len, 1));
   g.setAttribute('aAng', new THREE.Float32BufferAttribute(bag.ang, 1));
+  g.setAttribute('aNl', new THREE.Float32BufferAttribute(bag.nl, 1));
   g.setIndex(bag.idx);
 
   const wood = new THREE.ShaderMaterial({
     uniforms: uni,
     vertexShader: `
-      attribute float aLen, aAng; varying float vLen, vAng; varying vec3 vW, vN;
-      void main(){ vLen = aLen; vAng = aAng; vec4 w = modelMatrix*vec4(position,1.0); vW = w.xyz;
+      attribute float aLen, aAng, aNl; varying float vLen, vAng, vNl; varying vec3 vW, vN;
+      void main(){ vLen = aLen; vAng = aAng; vNl = aNl; vec4 w = modelMatrix*vec4(position,1.0); vW = w.xyz;
         vN = normalize(mat3(modelMatrix)*normal); gl_Position = projectionMatrix*viewMatrix*w; }`,
     fragmentShader: NOISE + `
       uniform vec3 uGreen, uDeep, uPaper; uniform float uGrow, uFade;
-      varying float vLen, vAng; varying vec3 vW, vN;
+      varying float vLen, vAng, vNl; varying vec3 vW, vN;
       void main(){
         if (vW.y > uGrow) discard;
         // fil du bois : lignes le long du membre, ondulées
         float warp = fbm(vW*0.45 + vec3(vLen*0.08))*9.0 + fbm(vW*1.4)*2.2;
-        float grain = vAng*40.0 + warp + sin(vLen*0.9 + vAng*6.2832)*0.6;
+        float grain = vAng*vNl + warp + sin(vLen*0.9 + vAng*6.2832)*0.6;
         float gw = fwidth(grain);
         float lines = iso(grain, gw) * smoothstep(1.0, 0.3, gw);
         float ring = fbm(vW*0.7 + 7.0)*14.0; float rw = fwidth(ring);
@@ -198,7 +203,7 @@ export function initScene(canvas) {
   leafGeo.setAttribute('iNrm', new THREE.InstancedBufferAttribute(new Float32Array(ln), 3));
   leafGeo.setAttribute('iRnd', new THREE.InstancedBufferAttribute(new Float32Array(lr), 3));
   leafGeo.instanceCount = lp.length / 3;
-  for (const a of [bag.pos, bag.nor, bag.len, bag.ang, bag.idx, lp, ln, lr]) a.length = 0;   // copiés dans les buffers : on rend la mémoire
+  for (const a of [bag.pos, bag.nor, bag.len, bag.ang, bag.nl, bag.idx, lp, ln, lr]) a.length = 0;   // copiés dans les buffers : on rend la mémoire
   const leaves = new THREE.Mesh(leafGeo, new THREE.ShaderMaterial({
     uniforms: uni, side: THREE.DoubleSide,
     vertexShader: `
